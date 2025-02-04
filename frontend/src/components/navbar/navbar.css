@@ -1,0 +1,183 @@
+/* First Row (Top Bar) */
+.top-bar {
+  background-color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  max-width: 100%;
+  margin: 0 10%;
+}
+
+/* Logo */
+
+.logo-img {
+  height: 70px; 
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  flex-grow: 1;
+  margin: 0 20px;
+  max-width: 400px;
+}
+
+.search-bar input {
+  padding: 8px;
+  width: 100%;
+ 
+  border-radius: 5px 0 0 5px;
+}
+
+.search-bar button {
+  padding: 8px;
+  background-color: #0056b3;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  color: black;
+  cursor: pointer;
+}
+
+/* User Links */
+.user-links {
+  display: flex;
+  gap: 25px;
+}
+
+.user-links a {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+  color: black;
+  font-weight: 400;
+}
+
+
+
+.user-links a svg {
+  font-size: 20px;
+}
+.user-links a:hover{
+  background-color: grey;
+}
+
+/* Second Row (Navbar) */
+.navbar {
+  background-color: #0056b3;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-menu li {
+  position: relative;
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.nav-menu a:hover {
+  background-color: crimson;
+  color: #ddd;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  min-width: 150px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content li {
+  padding: 10px;
+}
+
+.dropdown-content a {
+  color: black;
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Hamburger Menu (Mobile) */
+.hamburger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+}
+.nav-menu a.active {
+  font-weight: bold;
+  color: #ffcc00 !important;
+  text-decoration: none;
+}
+
+/* Active Dropdown Link */
+.dropdown-content a.active {
+  font-weight: bold;
+  background-color: #f0f0f0;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search-bar {
+    max-width: 100%;
+    width: 90%;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    background-color: #0056b3;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}

@@ -1,0 +1,74 @@
+/* Landing Page Styles */
+.landing-page {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Banner Section */
+  .banner-container {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+  
+  .banner-slide img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  /* Custom Dots for Carousel */
+  .slick-dots li button:before {
+    color: #fff; /* White dots */
+    font-size: 12px;
+  }
+  
+  /* Arrows for Carousel */
+  .slick-prev, .slick-next {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 50%;
+    padding: 10px;
+    z-index: 1;
+  }
+  
+  .slick-prev:hover, .slick-next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Content Below Banner */
+  .other-content {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .other-content h2 {
+    font-size: 2em;
+    margin-top: 20px;
+  }
+  
+  .other-content p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+  
+  /* User Links */
+  .user-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+  }
+  
+  .user-links a {
+    text-decoration: none;
+    font-size: 1.1em;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .user-links a:hover {
+    color: #0056b3;
+  }
+  
