@@ -1,17 +1,13 @@
 const express = require("express");
-const { connection } = require("./database/db");
-const { router } = require("./routes/userRoute.js");
-// const{ cors } = require("cors")
-const{Users}=require("./model/userSchema");
+const cors = require("cors");
+require("dotenv").config();
+const adminRoutes = require("./routes/adminRoutes");
 
-const app= express();
-const PORT = 5000;
-// app.use(cors());
+const app = express();
+app.use(cors());
 app.use(express.json());
-app.use(router);
 
-app.listen(PORT, () =>{
-    console.log(`Server is running on ${PORT}`);
-});
+app.use("/api/admin", adminRoutes); // Admin Routes
 
-connection ();
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

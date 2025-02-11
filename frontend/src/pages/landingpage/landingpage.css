@@ -1,74 +1,139 @@
-/* Landing Page Styles */
-.landing-page {
-    font-family: Arial, sans-serif;
-  }
+/* General Carousel Container */
+.carousel-container {
+  position: relative;
+  width: 95%;
+  margin: auto;
+  /* max-width: 600px; */
+  margin: auto;
+  overflow: hidden;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Image Styling */
+.carousel-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Navigation Buttons */
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.carousel-button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-button-left {
+  left: 10px;
+}
+
+.carousel-button-right {
+  right: 10px;
+}
+
+/* Indicators (Dots) */
+.carousel-indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  background-color: gray;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.indicator.active {
+  background-color: white;
+}
+
+
+/* Product Card Container */
+.featured-container{
+  color: black;
+  margin: 20px;
   
-  /* Banner Section */
-  .banner-container {
-    width: 100%;
-    max-width: 1500px;
-    margin: 0 auto;
-  }
-  
-  .banner-slide img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-  
-  /* Custom Dots for Carousel */
-  .slick-dots li button:before {
-    color: #fff; /* White dots */
-    font-size: 12px;
-  }
-  
-  /* Arrows for Carousel */
-  .slick-prev, .slick-next {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border-radius: 50%;
-    padding: 10px;
-    z-index: 1;
-  }
-  
-  .slick-prev:hover, .slick-next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-  }
-  
-  /* Content Below Banner */
-  .other-content {
-    text-align: center;
-    padding: 20px;
-    background-color: #fff;
-  }
-  
-  .other-content h2 {
-    font-size: 2em;
-    margin-top: 20px;
-  }
-  
-  .other-content p {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-  }
-  
-  /* User Links */
-  .user-links {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-  }
-  
-  .user-links a {
-    text-decoration: none;
-    font-size: 1.1em;
-    color: #333;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .user-links a:hover {
-    color: #0056b3;
-  }
-  
+}
+.feature-content{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.product-card {
+  width: 280px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  text-align: center;
+  padding: 15px;
+  transition: transform 0.3s ease-in-out;
+  font-family: Arial, sans-serif;
+}
+
+.product-card:hover {
+  transform: scale(1.03);
+}
+
+/* Product Image */
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
+/* Product Info */
+.product-info {
+  padding-top: 10px;
+}
+
+.product-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Price */
+.product-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+/* Wishlist */
+.wishlist {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.wishlist-icon {
+  margin-right: 5px;
+}
