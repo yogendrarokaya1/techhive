@@ -1,5 +1,9 @@
+// src/pages/AdminDashboard.js
+import React from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import AdminNavbar from "./adminnavbar/Adminnavbar";
+import Sidebar from "./adminsidebar/Adminsidebar"; // Import Sidebar
 
 const AdminDashboard = () => {
     const navigate = useNavigate();
@@ -11,17 +15,18 @@ const AdminDashboard = () => {
         }
     }, [navigate]);
 
-    const handleLogout = () => {
-        // Remove token from localStorage and redirect to login
-        localStorage.removeItem("adminToken");
-        navigate("/admin/");
-    };
-
     return (
-        <div>
-            <h2>Admin Dashboard</h2>
-            <button onClick={handleLogout}>Logout</button>
-            {/* Add your dashboard content */}
+        <div style={{ display: "flex" }}>
+            {/* Sidebar */}
+            <Sidebar />
+
+            <div style={{ marginLeft: "250px", width: "100%" }}>
+                <AdminNavbar />
+                <div style={{ padding: "20px" }}>
+                    <h2>Welcome to the Admin Dashboard</h2>
+                    <p>Manage your site and users from here.</p>
+                </div>
+            </div>
         </div>
     );
 };

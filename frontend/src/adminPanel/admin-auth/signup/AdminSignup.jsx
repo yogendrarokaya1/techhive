@@ -40,12 +40,12 @@ const AdminSignup = () => {
     return (
         <div className="admin-auth-container">
             <h2>Admin Signup</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="signup-form">
                 <input type="text" name="name" placeholder="Name" onChange={handleChange} required />
                 <input type="text" name="username" placeholder="Username" onChange={handleChange} required />
                 <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
                 <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
-                <button type="submit">Signup</button>
+                <button className="signup-btn" type="submit">Signup</button>
             </form>
 
             <div className="auth-links">

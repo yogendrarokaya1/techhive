@@ -1,0 +1,111 @@
+/* Basic container and page styles */
+.addproduct-container {
+    
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  
+  /* Form styling */
+  .addproduct-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Label styling */
+  label {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  /* Input fields */
+  input, textarea, select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  input[type="number"], input[type="text"], select {
+    width: 100%;
+  }
+  
+  textarea {
+    width: 100%;
+    height: 150px;
+  }
+  
+  /* Focus effect on input fields */
+  input:focus, textarea:focus, select:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Button styles */
+  .addproduct-btn {
+    padding: 12px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .addproduct-btn:hover {
+    background-color: #0056b3;
+  }
+  
+
+
+.addproduct-img {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 3px;
+    border-radius: 50%;
+}
+
+.image-previews {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.image-preview {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+  /* Small screen responsiveness */
+  @media (max-width: 768px) {
+    div {
+      padding: 15px;
+    }
+  
+    h2 {
+      font-size: 20px;
+    }
+  
+    input, textarea, select {
+      font-size: 14px;
+    }
+  
+    .addproduct-btn {
+      font-size: 14px;
+      padding: 10px 18px;
+    }
+  }
+  
