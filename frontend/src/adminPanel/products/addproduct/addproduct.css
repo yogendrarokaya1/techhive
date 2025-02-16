@@ -46,7 +46,7 @@
   }
   
   /* Button styles */
-  .addproduct-btn {
+  .add-btn {
     padding: 12px 20px;
     background-color: #007BFF;
     color: white;
@@ -57,7 +57,7 @@
     transition: background-color 0.3s ease;
   }
   
-  .addproduct-btn:hover {
+  .add-btn:hover {
     background-color: #0056b3;
   }
   

@@ -46,16 +46,28 @@ const Navbar = () => {
             <button className="dropbtn">Laptops by Brand</button>
             <ul className="dropdown-content">
               <li>
-                <Link to="/brands/apple" className={location.pathname === "/brands/apple" ? "active" : ""}>Apple</Link>
+                <Link to="/brands/apple" className={location.pathname === "/brands/apple" ? "active" : ""}>Dell</Link>
               </li>
               <li>
-                <Link to="/brands/dell" className={location.pathname === "/brands/dell" ? "active" : ""}>Dell</Link>
+                <Link to="/brands/dell" className={location.pathname === "/brands/dell" ? "active" : ""}>Acer</Link>
               </li>
               <li>
                 <Link to="/brands/hp" className={location.pathname === "/brands/hp" ? "active" : ""}>HP</Link>
               </li>
               <li>
                 <Link to="/brands/asus" className={location.pathname === "/brands/asus" ? "active" : ""}>Asus</Link>
+              </li>
+              <li>
+                <Link to="/brands/asus" className={location.pathname === "/brands/asus" ? "active" : ""}>MSI</Link>
+              </li>
+              <li>
+                <Link to="/brands/asus" className={location.pathname === "/brands/asus" ? "active" : ""}>Lenovo</Link>
+              </li>
+              <li>
+                <Link to="/brands/asus" className={location.pathname === "/brands/asus" ? "active" : ""}>Apple</Link>
+              </li>
+              <li>
+                <Link to="/brands/asus" className={location.pathname === "/brands/asus" ? "active" : ""}>Samsung</Link>
               </li>
             </ul>
           </li>
@@ -69,6 +81,19 @@ const Navbar = () => {
               Gadgets
             </Link>
           </li>
+
+          <li>
+            <Link to="/gadgets" className={location.pathname === "/gadgets" ? "active" : ""}>
+              Notebook
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/gadgets" className={location.pathname === "/gadgets" ? "active" : ""}>
+              Ultrabook
+            </Link>
+          </li>
+          
         </ul>
 
         {/* Hamburger Menu for Mobile */}

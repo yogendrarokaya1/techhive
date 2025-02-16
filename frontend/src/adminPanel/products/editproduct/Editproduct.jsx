@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import AdminNavbar from "../../adminnavbar/Adminnavbar";
 import Sidebar from "../../adminsidebar/Adminsidebar";
-import "./addproduct.css";
+import "./editProduct.css";
 
-const AddProduct = () => {
+const EditProduct = () => {
     const navigate = useNavigate();
+    const { id } = useParams();
 
     useEffect(() => {
         if (!localStorage.getItem("adminToken")) {
@@ -18,7 +19,7 @@ const AddProduct = () => {
         name: "",
         modelseries: "",
         description: "",
-        category: "Laptops",
+        category: "",
         brand: "",
         price: "",
         stock: "",
@@ -30,7 +31,38 @@ const AddProduct = () => {
         images: [],
     });
 
-    const [imagePreviews, setImagePreviews] = useState([]);
+    const [existingImages, setExistingImages] = useState([]);
+    const [newImages, setNewImages] = useState([]);
+    const [imagesToRemove, setImagesToRemove] = useState([]);
+
+    // Fetch product details
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/api/products/${id}`);
+                const data = response.data;
+                setProductDetails({
+                    name: data.name,
+                    modelseries: data.modelseries,
+                    description: data.description,
+                    category: data.category,
+                    brand: data.brand,
+                    price: data.price,
+                    stock: data.stock,
+                    processor: data.processor,
+                    ram: data.ram,
+                    storage: data.storage,
+                    screenSize: data.screenSize,
+                    os: data.os,
+                    images: [],
+                });
+                setExistingImages(data.images);
+            } catch (error) {
+                console.error("Error fetching product:", error);
+            }
+        };
+        fetchProduct();
+    }, [id]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -38,76 +70,53 @@ const AddProduct = () => {
     };
 
     const handleImageChange = (e) => {
-        const newFiles = e.target.files;
-        setProductDetails((prevDetails) => {
-            const updatedImages = [...prevDetails.images, ...newFiles];
-            return { ...prevDetails, images: updatedImages };
-        });
+        const files = Array.from(e.target.files);
+        setNewImages([...newImages, ...files]);
+    };
 
-        // Generate previews for the selected images
-        const previews = [];
-        Array.from(newFiles).forEach((file) => {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                previews.push(reader.result);
-                if (previews.length === newFiles.length) {
-                    setImagePreviews((prevPreviews) => [...prevPreviews, ...previews]);
-                }
-            };
-            reader.readAsDataURL(file);
-        });
+    const handleRemoveImage = (img) => {
+        setImagesToRemove((prev) => [...prev, img]); // Track removed images
+        setExistingImages((prev) => prev.filter((image) => image !== img)); // Update UI
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
+        
         Object.keys(productDetails).forEach((key) => {
-            if (key === "images") {
-                Array.from(productDetails.images).forEach((image) => {
-                    formData.append("images", image);
-                });
-            } else {
-                formData.append(key, productDetails[key]);
-            }
+            formData.append(key, productDetails[key]);
         });
 
+        // Append new images
+        newImages.forEach((image) => {
+            formData.append("images", image);
+        });
+
+        // Append removed images
+        formData.append("imagesToRemove", JSON.stringify(imagesToRemove));
+
         try {
-            const response = await axios.post("http://localhost:5000/api/products", formData, {
+            const response = await axios.put(`http://localhost:5000/api/products/${id}`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
 
             if (response.status === 200) {
-                alert("Product added successfully!");
-                setProductDetails({
-                    name: "",
-                    modelseries: "",
-                    description: "",
-                    category: "Laptops",
-                    brand: "",
-                    price: "",
-                    stock: "",
-                    processor: "",
-                    ram: "",
-                    storage: "",
-                    screenSize: "",
-                    os: "",
-                    images: [],
-                });
-                setImagePreviews([]); // Reset image previews
+                alert("Product updated successfully!");
+                navigate("/admin/");
             }
         } catch (error) {
-            alert("Error adding product");
+            alert("Error updating product");
         }
     };
 
     return (
-        <div className="addproduct-container" style={{ display: "flex" }}>
+        <div className="edit-product-container" style={{ display: "flex" }}>
             <Sidebar />
             <div style={{ marginLeft: "250px", width: "100%" }}>
                 <AdminNavbar />
                 <div style={{ padding: "50px" }}>
-                    <h2>Add New Laptop Product</h2>
-                    <form onSubmit={handleSubmit} className="addproduct-form" encType="multipart/form-data">
+                    <h2>Edit Product</h2>
+                    <form onSubmit={handleSubmit} className="edit-product-form" encType="multipart/form-data">
                         <label>Product Name:</label>
                         <input type="text" name="name" value={productDetails.name} onChange={handleChange} required />
 
@@ -156,22 +165,22 @@ const AddProduct = () => {
                         <label>Operating System:</label>
                         <input type="text" name="os" value={productDetails.os} onChange={handleChange} required />
 
-                        <label>Images:</label>
-                        <input type="file" name="images" multiple onChange={handleImageChange} required />
-
-                        {/* Display selected images */}
+                        <label>Existing Images:</label>
                         <div className="image-previews">
-                            {imagePreviews.map((preview, index) => (
-                                <img
-                                    key={index}
-                                    src={preview}
-                                    alt={`preview ${index}`}
-                                    className="image-preview"
-                                />
+                            {existingImages.map((img, index) => (
+                                <div key={index} className="image-container">
+                                    <img src={img} alt={`preview ${index}`} className="image-preview" />
+                                    <button type="button" onClick={() => handleRemoveImage(img)} className="remove-image-btn">
+                                        Remove
+                                    </button>
+                                </div>
                             ))}
                         </div>
 
-                        <button className="add-btn" type="submit">Add Product</button>
+                        <label>New Images:</label>
+                        <input type="file" name="images" multiple onChange={handleImageChange} />
+
+                        <button className="update-btn" type="submit">Update Product</button>
                     </form>
                 </div>
             </div>
@@ -179,4 +188,4 @@ const AddProduct = () => {
     );
 };
 
-export default AddProduct;
+export default EditProduct;
