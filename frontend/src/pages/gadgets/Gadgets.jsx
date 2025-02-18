@@ -6,4 +6,4 @@ const Gadgets = () => {
   )
 }
 
-export default Gadgets
+export default Gadgets;

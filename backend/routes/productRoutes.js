@@ -14,7 +14,12 @@ router.delete("/:id", productController.deleteProduct);
 router.get("/:id", productController.getProduct);
 router.put("/:id", upload.array("images", 5), productController.updateProduct);
 
+router.get("/category/:category", productController.getProductsByCategory);
+router.get("/laptoplist/:category", productController.getLaptopsList);
 
-router.get("/latest-products", productController.getLatestProducts);
+
+
+
+
 
 module.exports = router;

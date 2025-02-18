@@ -2,8 +2,11 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import Landingpage from "./pages/landingpage/Landingpage";
-// import ProductDetail from "./pages/productdetail/ProductDetail";
+import LaptopList from "./pages/laptops/Laptoplist";
+import GamingLaptopList from "./pages/gaming-laptops/GamingLaptopsList"
 import Gadgets from "./pages/gadgets/Gadgets";
+import NotebookList from "./pages/notebook/Notebook"
+import UltrabookList from "./pages/ultrabook/Ultrabook"
 // import Login from "./pages/user-auth/login/Login";
 // import UserDashboard from "./pages/user-dashboard/UserDashboard";
 // import Cart from "./pages/cart/Cart";
@@ -36,8 +39,14 @@ const Layout = () => {
 
         {/* Public Routes */}
         <Route path="/" element={<Landingpage />} />
-        {/* <Route path="/product/" element={<ProductDetail />} /> */}
-        <Route path="/gadgets" element={<Gadgets />} />
+        <Route path="/laptops/" element={<LaptopList />} />
+        <Route path="/gaming-laptops/" element={<GamingLaptopList />} />
+
+        <Route path="/gadgets/" element={<Gadgets />} />
+        <Route path="/notebook/" element={<NotebookList />} />
+        <Route path="/ultrabook/" element={<UltrabookList />} />
+
+
         
         {/* User Routes
         <Route path="/login" element={<Login />} />

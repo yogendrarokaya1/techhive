@@ -66,29 +66,19 @@ class ProductModel {
         const result = await pool.query(query, values);
         return result.rows[0];
     }
+  
 
-    static async getLatestLaptops() {
-        const query = `
-            SELECT id, name, price, image 
-            FROM products 
-            WHERE category = 'Laptop' 
-            ORDER BY created_at DESC
-            LIMIT 4
-        `;
-        const result = await pool.query(query);
+    static async getProductsByCategory(category) {
+        const query = `SELECT * FROM products WHERE category = $1 ORDER BY created_at DESC LIMIT 4`;
+        const values = [category];
+        const result = await pool.query(query, values);
         return result.rows;
     }
 
-    // Get latest gaming laptops (limit to 4)
-    static async getLatestGamingLaptops() {
-        const query = `
-            SELECT id, name, price, image 
-            FROM products 
-            WHERE category = 'Gaming Laptop' 
-            ORDER BY created_at DESC
-            LIMIT 4
-        `;
-        const result = await pool.query(query);
+    static async getLaptopsList(category) {
+        const query = `SELECT * FROM products WHERE category = $1 ORDER BY created_at DESC`;
+        const values = [category];
+        const result = await pool.query(query, values);
         return result.rows;
     }
 

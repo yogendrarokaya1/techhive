@@ -85,7 +85,7 @@ const ProductList = () => {
                                 <td>{product.stock}</td>
                                 <td>{product.brand}</td>
                                 <td>{product.category}</td>
-                                <td>${product.price}</td>
+                                <td>Rs. {product.price}</td>
                                 <td className="product-actions">
                                     <button onClick={() => handleEdit(product.id)} className="edit-btn">
                                         Edit

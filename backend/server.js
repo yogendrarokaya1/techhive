@@ -14,5 +14,6 @@ app.use("/api/admin", adminRoutes);
 // Product Routes - ensure this is correct
 app.use("/api/products", productRoutes);
 
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

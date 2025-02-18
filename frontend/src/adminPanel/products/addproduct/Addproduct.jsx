@@ -144,6 +144,8 @@ const AddProduct = () => {
                         <label>Stock Quantity:</label>
                         <input type="number" name="stock" value={productDetails.stock} onChange={handleChange} required />
 
+                        <label>Processor:</label>
+                        <input type="text" name="processor" value={productDetails.processor} onChange={handleChange} required />
                         <label>RAM:</label>
                         <input type="text" name="ram" value={productDetails.ram} onChange={handleChange} required />
 

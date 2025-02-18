@@ -1,13 +1,12 @@
 /* General Carousel Container */
 .carousel-container {
   position: relative;
-  width: 95%;
+  width: 99%;
   margin: auto;
   /* max-width: 600px; */
-  margin: auto;
   overflow: hidden;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px 0px;
+
 }
 
 /* Image Styling */
@@ -70,8 +69,7 @@
 
 /* Product Card Container */
 .featured-container{
-  color: black;
-  margin: 20px;
+  margin: 20px 0px;
   
 }
 .feature-content{
@@ -79,6 +77,34 @@
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
+  margin: 20px 5px;
+}
+.featured-heading{
+  display: flex;
+  justify-content: space-between;
+  /* background-color: white; */
+  color: Blue;
+  padding: 0px 20px;
+  
+}
+/* .viewall-btn{
+  border: none;
+  background-color: #007bff;
+
+} */
+
+.viewall-btn {
+  
+  color: blue; 
+  padding: 10px 20px; 
+  border: none;
+ background-color: white;
+  cursor: pointer; /* Change cursor to a pointer on hover */
+  
+}
+
+.viewall-btn:hover {
+color: red;  
 }
 .product-card {
   width: 280px;
@@ -88,13 +114,13 @@
   overflow: hidden;
   text-align: center;
   padding: 15px;
-  transition: transform 0.3s ease-in-out;
+ 
   font-family: Arial, sans-serif;
 }
 
-.product-card:hover {
+/* .product-card:hover {
   transform: scale(1.03);
-}
+} */
 
 /* Product Image */
 .product-image {
@@ -137,3 +163,24 @@
 .wishlist-icon {
   margin-right: 5px;
 }
+.addtocart-btn{
+  margin: 10px;
+}
+
+.addtocart-btn button{
+  width: 90%;
+  margin: auto;
+  background-color: red;
+  color: #fff;
+  border: 0.5px solid black;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.addtocart-btn button:hover{
+  background-color: rgb(233, 86, 86);
+}
+

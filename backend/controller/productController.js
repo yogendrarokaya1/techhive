@@ -100,17 +100,28 @@ exports.deleteProduct = async (req, res) => {
         console.error(error);
         res.status(500).json({ message: "Error deleting product" });
     }
+    
 };
 
-
-exports.getLatestProducts = async (req, res) => {
+exports.getProductsByCategory = async (req, res) => {
     try {
-        const laptops = await ProductModel.getLatestLaptops();
-        const gamingLaptops = await ProductModel.getLatestGamingLaptops();
-
-        res.status(200).json({ laptops, gamingLaptops });
+        const category = req.params.category;
+        const products = await ProductModel.getProductsByCategory(category);
+        res.json(products);
     } catch (error) {
-        console.error("Error fetching products:", error);
-        res.status(500).json({ message: "Server error" });
+        res.status(500).json({ message: "Error fetching products" });
     }
 };
+
+exports.getLaptopsList = async (req, res) => {
+    try {
+        const category = req.params.category;
+        const products = await ProductModel.getLaptopsList(category);
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching products" });
+    }
+};
+
+
+
