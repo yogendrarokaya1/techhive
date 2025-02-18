@@ -79,12 +79,12 @@ const Landingpage = () => {
                 className="product-image"
               />
               <div className="product-info">
-              <h3 className="product-title">{product.name}
+                <h3 className="product-title">{product.name}
                   <span className="product-model"> | Model {product.modelseries}</span>
                   <span className="product-processor"> | {product.processor} Processor</span>
                   <span className="product-ram"> | {product.ram} RAM</span>
                   <span className="product-storage"> | {product.storage} Storage</span>
-                </h3> 
+                </h3>
                 <p className="product-price">Rs {product.price}</p>
                 <div className="wishlist">
                   <Heart className="wishlist-icon" />

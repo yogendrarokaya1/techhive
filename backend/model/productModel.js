@@ -82,6 +82,8 @@ class ProductModel {
         return result.rows;
     }
 
+    
+
 }
 
 module.exports = ProductModel;

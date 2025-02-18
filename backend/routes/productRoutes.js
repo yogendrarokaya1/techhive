@@ -22,4 +22,6 @@ router.get("/laptoplist/:category", productController.getLaptopsList);
 
 
 
+
+
 module.exports = router;
