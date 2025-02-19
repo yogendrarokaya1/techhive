@@ -19,7 +19,7 @@ const AdminSignup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch("http://localhost:5000/api/admin/signup", {
+        const response = await fetch("http://localhost:5000/api/admin/adminsignup", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData),
@@ -57,7 +57,7 @@ const AdminSignup = () => {
                 </p>
             </div>
         </div>
-    );
+    ); 
 };
 
 export default AdminSignup;

@@ -7,8 +7,11 @@ import GamingLaptopList from "./pages/gaming-laptops/GamingLaptopsList"
 import Gadgets from "./pages/gadgets/Gadgets";
 import NotebookList from "./pages/notebook/Notebook"
 import UltrabookList from "./pages/ultrabook/Ultrabook"
-// import Login from "./pages/user-auth/login/Login";
-// import UserDashboard from "./pages/user-dashboard/UserDashboard";
+import UserLogin from "./pages/user-auth/userlogin/UserLogin";
+import UserSignup from "./pages/user-auth/usersignup/Usersignup";
+
+
+import UserDashboard from "./pages/userdashboard/UserDashboard";
 // import Cart from "./pages/cart/Cart";
 // import Wishlist from "./pages/wishlist/Wishlist";
 import AdminRoutes from "./adminPanel/Adminroute";
@@ -48,10 +51,12 @@ const Layout = () => {
 
 
         
-        {/* User Routes
-        <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<UserDashboard />} />
-        <Route path="/cart" element={<Cart />} />
+        {/* User Routes */}
+        <Route path="/userlogin" element={<UserLogin />} />
+        <Route path="/usersignup" element={<UserSignup />} />
+
+        <Route path="/userdashboard" element={<UserDashboard />} />
+         {/*<Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} /> */}
       </Routes>
 

@@ -3,7 +3,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./adminsidebar.css"; // Your styles for the sidebar
 
-const Sidebar = () => {
+const AdminSidebar = () => {
     const location = useLocation(); // Hook to get the current location
 
     return (
@@ -33,4 +33,4 @@ const Sidebar = () => {
     );
 };
 
-export default Sidebar;
+export default AdminSidebar;

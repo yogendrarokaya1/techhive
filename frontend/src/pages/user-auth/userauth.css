@@ -1,0 +1,146 @@
+/* Signup.css */
+.main-user-container{
+    width: 100%;
+    justify-content: center;
+    justify-items: center;
+    margin: 20px 0px;
+}
+  
+  .usersignup-container {
+    background: rgba(125, 123, 123, 0.8);
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .user-title {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color:white;
+  }
+  
+  .usersignup-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .usersignup-form input {
+    margin-bottom: 15px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .usersignup-form input:focus {
+    border: 2px solid #8f94fb;
+  }
+  
+  .usersignup-button {
+    padding: 12px;
+    background: #6a11cb;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .usersignup-button:hover {
+    transform: scale(1.05);
+  }
+  
+  .error {
+    color: #ff4d4d;
+    margin-bottom: 15px;
+  }
+  
+  .success {
+    color: #4CAF50;
+    margin-bottom: 15px;
+  }
+
+  
+  
+  /* Responsive Design */
+  @media (max-width: 480px) {
+    .usersignup-container {
+      padding: 30px 20px;
+    }
+  }
+  
+
+  .main-user-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+  .userlogin-container,
+  .usersignup-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #333;
+
+  }
+  
+  .user-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .userlogin-form input,
+  .usersignup-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .userlogin-button,
+  .usersignup-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .userauth-links {
+    margin-top: 10px;
+    color: #333;
+
+  }
+  
+  .userlogin-link,
+  .usersignup-link {
+    color: #007bff;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .userlogin-link:hover,
+  .usersignup-link:hover {
+    text-decoration: underline;
+  }
+  
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  

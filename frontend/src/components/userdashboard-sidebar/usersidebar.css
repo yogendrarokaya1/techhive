@@ -1,0 +1,53 @@
+.usersidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    padding: 20px;
+    height: 100vh;
+    color: white;
+  }
+  
+  .usersidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .usersidebar ul li {
+    padding: 12px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .usersidebar ul li.active {
+    background-color: white;
+    color: #d32f2f;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  
+  .dashboard-content {
+    flex-grow: 1;
+    padding: 20px;
+  }
+  
+  .user-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .user-info div {
+    background: #f8f8f8;
+    padding: 20px;
+    border-radius: 5px;
+    width: 48%;
+  }
+  
+  .edit-button {
+    background: transparent;
+    border: 1px solid red;
+    color: red;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  

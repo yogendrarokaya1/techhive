@@ -16,13 +16,13 @@
   }
   
   /* Label styling */
-  label {
+  .addproduct-form label {
     font-size: 16px;
     color: #555;
   }
   
   /* Input fields */
-  input, textarea, select {
+  .addproduct-form input, textarea, select {
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ddd;
@@ -30,17 +30,17 @@
     outline: none;
   }
   
-  input[type="number"], input[type="text"], select {
+  /* .addproduct-form input[type="number"], input[type="text"], select {
     width: 100%;
-  }
+  } */
   
-  textarea {
+  .addproduct-form textarea {
     width: 100%;
     height: 150px;
   }
   
   /* Focus effect on input fields */
-  input:focus, textarea:focus, select:focus {
+  .addproduct-form input:focus, textarea:focus, select:focus {
     border-color: #007BFF;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   }
@@ -99,7 +99,7 @@
       font-size: 20px;
     }
   
-    input, textarea, select {
+    .addproduct-form input, textarea, select {
       font-size: 14px;
     }
   

@@ -3,7 +3,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminNavbar from "./adminnavbar/Adminnavbar";
-import Sidebar from "./adminsidebar/Adminsidebar"; // Import Sidebar
+import AdminSidebar from "./adminsidebar/Adminsidebar"; // Import Sidebar
 
 const AdminDashboard = () => {
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ const AdminDashboard = () => {
     return (
         <div style={{ display: "flex" }}>
             {/* Sidebar */}
-            <Sidebar />
+            <AdminSidebar />
 
             <div style={{ marginLeft: "250px", width: "100%" }}>
                 <AdminNavbar />
