@@ -110,13 +110,13 @@ const EditProduct = () => {
     };
 
     return (
-        <div className="edit-product-container" style={{ display: "flex" }}>
+        <div className="editproduct-container" style={{ display: "flex" }}>
             <Sidebar />
             <div style={{ marginLeft: "250px", width: "100%" }}>
                 <AdminNavbar />
                 <div style={{ padding: "50px" }}>
                     <h2>Edit Product</h2>
-                    <form onSubmit={handleSubmit} className="edit-product-form" encType="multipart/form-data">
+                    <form onSubmit={handleSubmit} className="editproduct-form" encType="multipart/form-data">
                         <label>Product Name:</label>
                         <input type="text" name="name" value={productDetails.name} onChange={handleChange} required />
 

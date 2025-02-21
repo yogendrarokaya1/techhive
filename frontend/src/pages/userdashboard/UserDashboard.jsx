@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UserSidebar from "../../components/userdashboard-sidebar/Usersidebar";
-import DashboardContent from "../../components/userdashboard-sidebar/AccountInformation";
+import AccountInformation from "../../components/userdashboard-sidebar/AccountInformation";
 import "./userdashboard.css"
 
 
@@ -19,7 +19,7 @@ const UserDashboard = () => {
     <div>
       <div className="user-dashboard" >
       <UserSidebar />
-      <DashboardContent />
+      <AccountInformation />
     </div>
     </div>
   );

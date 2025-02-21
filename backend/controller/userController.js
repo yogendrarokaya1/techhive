@@ -38,7 +38,76 @@ const UserController = {
         } catch (error) {
             res.status(500).json({ msg: "Server Error" });
         }
+    },
+    async getUserDetails(req, res) {
+        try {
+            const token = req.header("Authorization");
+            if (!token) return res.status(401).json({ msg: "Unauthorized" });
+
+            // Verify token
+            const decoded = jwt.verify(token.replace("Bearer ", ""), process.env.JWT_SECRET);
+            const userId = decoded.userId;
+
+            const user = await UserModel.findUserById(userId);
+            if (!user) return res.status(404).json({ msg: "User not found" });
+
+            res.json(user);
+        } catch (error) {
+            res.status(401).json({ msg: "Invalid token" });
+        }
+    },
+
+    async getUserDetailsByID(req, res) {
+        try {
+            const token = req.header("Authorization");
+            if (!token) return res.status(401).json({ msg: "Unauthorized" });
+
+            // Verify token
+            const decoded = jwt.verify(token.replace("Bearer ", ""), process.env.JWT_SECRET);
+            const userId = decoded.userId;
+
+            // Fetch user details
+            const user = await UserModel.findUserById(userId);
+            if (!user) return res.status(404).json({ msg: "User not found" });
+
+            // Return user details (excluding password)
+            res.json({
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                contact: user.contact,
+            });
+        } catch (error) {
+            console.error(error);
+            res.status(401).json({ msg: "Invalid token" });
+        }
+    },
+
+    // Update User Details: Update user details using the JWT token
+    async updateUserDetails(req, res) {
+        try {
+            const { name, contact, email } = req.body;
+            const token = req.header("Authorization");
+            if (!token) return res.status(401).json({ msg: "Unauthorized" });
+
+            // Verify token
+            const decoded = jwt.verify(token.replace("Bearer ", ""), process.env.JWT_SECRET);
+            const userId = decoded.userId;
+
+            // Update user details
+            const updatedUser = await UserModel.updateUser(userId, name, contact, email);
+            if (!updatedUser) return res.status(404).json({ msg: "User not found" });
+
+            res.json({
+                msg: "Profile updated successfully",
+                user: updatedUser,
+            });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ msg: "Error updating user data" });
+        }
     }
+
 };
 
 module.exports = UserController;

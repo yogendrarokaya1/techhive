@@ -32,7 +32,7 @@ const UserLogin = () => {
         // Force update Navbar by dispatching a custom event
         window.dispatchEvent(new Event("storage"));
   
-        navigate("/userdashboard"); // Redirect after successful login
+        navigate("/userdashboard-accountinfo"); // Redirect after successful login
       } else {
         setError(data.message || "Invalid email or password");
       }

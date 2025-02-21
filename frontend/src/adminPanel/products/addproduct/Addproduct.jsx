@@ -146,7 +146,7 @@ const AddProduct = () => {
 
                         <label>Processor:</label>
                         <input type="text" name="processor" value={productDetails.processor} onChange={handleChange} required />
-                        <label>RAM:</label>
+                        <label>Memory:</label>
                         <input type="text" name="ram" value={productDetails.ram} onChange={handleChange} required />
 
                         <label>Storage:</label>

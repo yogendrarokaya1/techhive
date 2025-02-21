@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Heart } from "lucide-react";
 import "./landingpage.css";
@@ -11,6 +13,8 @@ import laptopImage from "../../media/products/laptop.jpg";
 const images = [slide1, slide2];
 
 const Landingpage = () => {
+  const navigate = useNavigate();
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [featuredLaptops, setFeaturedLaptops] = useState([]);
   const [featuredGamingLaptops, setFeaturedGamingLaptops] = useState([]);
@@ -78,7 +82,9 @@ const Landingpage = () => {
                 alt={product.name}
                 className="product-image"
               />
-              <div className="product-info">
+              <div className="product-info"
+                onClick={() => navigate(`/laptopdetail/${product.id}`)}
+              >
                 <h3 className="product-title">{product.name}
                   <span className="product-model"> | Model {product.modelseries}</span>
                   <span className="product-processor"> | {product.processor} Processor</span>
@@ -112,13 +118,13 @@ const Landingpage = () => {
                 alt={product.name}
                 className="product-image"
               />
-              <div className="product-info">
+              <div className="product-info" onClick={() => navigate(`/laptopdetail/${product.id}`)} >
                 <h3 className="product-title">{product.name}
                   <span className="product-model"> | Model {product.modelseries}</span>
                   <span className="product-processor"> | {product.processor} Processor</span>
                   <span className="product-ram"> | {product.ram} RAM</span>
                   <span className="product-storage"> | {product.storage} Storage</span>
-                </h3>                <p className="product-price">Rs {product.price}</p>
+                </h3><p className="product-price">Rs {product.price}</p>
                 <div className="wishlist">
                   <Heart className="wishlist-icon" />
                   <span>Add to wishlist</span>
@@ -136,7 +142,8 @@ const Landingpage = () => {
         <div className="featured-heading">
           <h2>Featured Gadgets</h2>
           <button className="viewall-btn">View All</button>
-        </div>        <div className="feature-content">
+        </div>
+        <div className="feature-content">
           {featuredGadgets.map((product) => (
             <div className="product-card" key={product.id}>
               <img
@@ -144,7 +151,7 @@ const Landingpage = () => {
                 alt={product.name}
                 className="product-image"
               />
-              <div className="product-info">
+              <div className="product-info" onClick={() => navigate(`/laptopdetail/${product.id}`)} >
                 <h3 className="product-title">{product.name}
                   <span className="product-model"> | {product.modelseries}</span>
 

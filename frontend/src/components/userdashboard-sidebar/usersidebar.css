@@ -50,4 +50,136 @@
     cursor: pointer;
     margin-top: 10px;
   }
+.user-account-container{
+  display: flex;
+}  
+
+
+
+
+
+
+
+/* General container for user account page */
+.user-account-container {
+  display: flex;
+  flex-direction: row;
   
+  background-color: #f8f9fa;
+}
+
+/* Sidebar styling */
+.user-account-container .user-sidebar {
+  width: 250px;
+  background-color: #343a40;
+  color: white;
+  padding: 20px;
+  position: fixed;
+  height: 100vh;
+}
+
+.user-account-container .user-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.user-account-container .user-sidebar ul li {
+  margin-bottom: 15px;
+}
+
+.user-account-container .user-sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  display: block;
+  padding: 10px;
+}
+
+.user-account-container .user-sidebar ul li a:hover {
+  background-color: #495057;
+}
+
+/* Main content area */
+.user-edit-form {
+  flex: 1;
+  margin-left: 270px; /* Adjust for the sidebar */
+  padding: 40px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 40px auto;
+}
+
+/* Title */
+.user-edit-form h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Form styling */
+.user-edit-form label {
+  display: block;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+
+.user-edit-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.user-edit-form input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Submit Button */
+.user-edit-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.user-edit-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Loading text */
+.user-edit-form p {
+  text-align: center;
+  font-size: 18px;
+  color: #007bff;
+}
+
+@media (max-width: 768px) {
+  .user-account-container {
+    flex-direction: column;
+  }
+
+  .user-account-container .user-sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .user-edit-form {
+    margin-left: 0;
+    width: 90%;
+  }
+}

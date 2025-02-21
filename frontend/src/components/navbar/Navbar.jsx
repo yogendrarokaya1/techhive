@@ -61,7 +61,7 @@ const Navbar = ({ onUserLogin }) => {
           <Link to="/cart">
             <FaShoppingCart /> My Cart
           </Link>
-          <Link to="/userdashboard">
+          <Link to="/userdashboard-accountinfo">
             <FaUser /> My Account
           </Link>
           {user ? (
@@ -70,7 +70,7 @@ const Navbar = ({ onUserLogin }) => {
             <div className="user-dropdown">
               
               
-              <span className="username">Welcome {user.name}</span>
+              <span className="username">Welcome</span>
               <button className="logout-btn" onClick={handleLogout}>
                 Logout
               </button>
