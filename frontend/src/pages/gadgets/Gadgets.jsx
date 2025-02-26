@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Heart } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 import FilterBar from "../../components/filter/Filterbar";
 import "../landingpage/landingpage.css";
@@ -9,6 +10,7 @@ const Laptoplist = () => {
   const [sortOrder, setSortOrder] = useState(""); // State for sorting order
   const [laptopList, setLaptopList] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -56,19 +58,19 @@ const Laptoplist = () => {
                     alt={product.name}
                     className="product-image"
                   />
-                  <div className="product-info">
-                    <h3 className="product-title">
-                      {product.name}
+                  <div className="product-info" onClick={() => navigate(`/laptopdetail/${product.id}`)} >
+                    <h3 className="product-title">{product.name}
                       <span className="product-model"> | Model {product.modelseries}</span>
                       <span className="product-processor"> | {product.processor} Processor</span>
                       <span className="product-ram"> | {product.ram} RAM</span>
                       <span className="product-storage"> | {product.storage} Storage</span>
                     </h3>
                     <p className="product-price">Rs {product.price}</p>
-                    <div className="wishlist">
-                      <Heart className="wishlist-icon" />
-                      <span>Add to wishlist</span>
-                    </div>
+                  </div>
+
+                  <div className="wishlist">
+                    <Heart className="wishlist-icon" />
+                    <span onClick={() => handleAddToWishlist(product.id)}>Add to wishlist</span>
                   </div>
                   <div className="addtocart-btn">
                     <button>Add to Cart</button>

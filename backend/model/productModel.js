@@ -82,6 +82,19 @@ class ProductModel {
         return result.rows;
     }
 
+    static async getLaptopDetails  (id){
+        try {
+            const result = await pool.query(
+                "SELECT * FROM products WHERE id = $1",
+                [id]
+            );
+            return result.rows[0];
+        } catch (error) {
+            console.error("Error fetching product:", error);
+            throw error;
+        }
+    };
+
     
 
 }

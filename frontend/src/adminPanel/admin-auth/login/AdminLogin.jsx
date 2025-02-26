@@ -52,7 +52,7 @@ const AdminLogin = () => {
 
     // Navigate to signup page
     const handleSignupRedirect = () => {
-        navigate("/admin/signup");
+        navigate("/admin/adminsignup");
     };
 
     return (

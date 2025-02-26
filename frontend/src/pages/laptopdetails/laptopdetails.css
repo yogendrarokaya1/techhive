@@ -1,132 +1,157 @@
 .laptopdetail-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 95%;
-    margin: auto;
-    padding: 20px;
-  }
-  
-  .laptopdetailcard {
-    width: 100%;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-   
-    display: flex;
-  }
-  
-  .laptopdetailimage-slider {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 40%;
-    margin: auto;
-  }
-  
-  .laptopdetailproduct-image {
-    width: 350px;
-    height: auto;
-    border-radius: 10px;
-    object-fit: cover;
-  }
-  
-  .laptopdetailslider-btn {
-    position: absolute;
-    bottom: -30px;
-    background: rgba(0, 0, 0, 0.5);
-    border: none;
-    color: white;
-    padding: 6px;
-    border-radius: 50%;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .laptopdetailslider-btn:hover {
-    background: rgba(0, 0, 0, 0.7);
-  }
-  
-  .left {
-    left: 40%;
-  }
-  
-  .right {
-    right: 40%;
-  }
-  
-  .laptopdetailactions {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .btn {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .add-to-cart {
-    background-color: #ff9800;
-    color: white;
-  }
-  
-  .buy-now {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  .quantity-input {
-    width: 60px;
-    padding: 5px;
-    text-align: center;
-  }
-  
-  .laptopdetailcard-content {
-    width: 60%;
-    margin: auto;
-  }
-  
-  .laptopdetailtitle {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .laptopdetailprice {
-    font-size: 20px;
-    color: #d9534f;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .laptopdetailmodel, .laptopdetailbrand {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 5px;
-  }
-  
-  .laptopdetailspecs {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .laptopdetailspecs li {
-    font-size: 14px;
-    color: #444;
-    margin-bottom: 5px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+}
+
+.laptopdetailcard {
+  display: flex;
+  gap: 50px;
+  max-width: 100%;
+  background: #fff;
+  border-radius: 10px;
+}
+
+/* Thumbnail Section */
+.laptopdetailimage-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.thumbnail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.thumbnail {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: 0.3s ease;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+  border: 2px solid red;
+}
+
+/* Image Slider */
+.laptopdetailimage-slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.laptopdetailproduct-image {
+  width: 450px;
+  height: 300px; /* Fixed height */
+  object-fit:contain;
+  margin: 8px;
+  border-radius: 10px;
+  border: 2px solid #ccc; /* Adds a subtle border */
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
+}
+
+/* Slider Buttons */
+.laptopdetailslider-btn {
+  /* position: absolute; */
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  z-index: 2;
+  gap: 20px;
+}
+
+.laptopdetailslider-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.laptopdetailslider-btn.left {
+  left: -30px;
+}
+
+.laptopdetailslider-btn.right {
+  right: -30px;
+}
+
+/* Content Section */
+.laptopdetailcard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 60%;
+}
+
+.laptopdetailtitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.laptopdetailprice {
+  color: #e63946;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.laptopdetailmodel, 
+.laptopdetailbrand {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Specifications */
+.laptopdetailspecs {
+  list-style: none;
+  padding: 0;
+}
+
+.laptopdetailspecs li {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #444;
+}
+
+/* Actions */
+.laptopdetailactions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.quantity-input {
+  width: 50px;
+  padding: 5px;
+  text-align: center;
+}
+
+.btn {
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.add-to-cart {
+  background: #ff9800;
+  color: white;
+}
+
+.buy-now {
+  background: #4caf50;
+  color: white;
+}

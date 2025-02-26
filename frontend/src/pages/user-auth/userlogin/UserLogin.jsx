@@ -6,8 +6,6 @@ const UserLogin = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
- 
-
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,31 +14,34 @@ const UserLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(""); // Reset error before new request
-  
+    
     try {
       const response = await fetch("http://localhost:5000/api/user/userslogin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-  
+
       const data = await response.json();
+
+      // If login is successful, save user data and token
       if (response.ok) {
         localStorage.setItem("user", JSON.stringify({ name: data.user.name }));
         localStorage.setItem("userToken", data.token);
-  
-        // Force update Navbar by dispatching a custom event
+
+        // Trigger a custom event to update the Navbar (if necessary)
         window.dispatchEvent(new Event("storage"));
-  
-        navigate("/userdashboard-accountinfo"); // Redirect after successful login
+
+        // Redirect to the user dashboard after successful login
+        navigate("/userdashboard-accountinfo");
       } else {
         setError(data.message || "Invalid email or password");
       }
     } catch (error) {
+      // Handle server error
       setError("Server error, please try again later.");
     }
   };
-  
 
   return (
     <div className="main-user-container">

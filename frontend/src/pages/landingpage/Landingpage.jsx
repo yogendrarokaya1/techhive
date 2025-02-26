@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Heart } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Heart } from "lucide-react";
+
 import "./landingpage.css";
 
 import slide1 from "../../media/banner_images/banner-bg.png";
@@ -19,7 +20,6 @@ const Landingpage = () => {
   const [featuredLaptops, setFeaturedLaptops] = useState([]);
   const [featuredGamingLaptops, setFeaturedGamingLaptops] = useState([]);
   const [featuredGadgets, setFeaturedGadgets] = useState([]);
-
 
   useEffect(() => {
     axios.get('http://localhost:5000/api/products/category/Laptops')
@@ -43,6 +43,36 @@ const Landingpage = () => {
     setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
+
+  const handleAddToWishlist = async (productId) => {
+    const token = localStorage.getItem("userToken");
+
+    if (!token) {
+      alert("Please log in to add items to your wishlist.");
+      navigate("/userlogin");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/wishlist/add",
+        { productId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.data.success) {
+        alert("Product added to wishlist!");
+      } else {
+        alert(response.data.message); // Show the message from the backend
+      }
+    } catch (error) {
+      alert("Product is already in your list");
+    }
+  };
   return (
     <>
       <div className="carousel-container">
@@ -71,7 +101,9 @@ const Landingpage = () => {
       <div className="featured-container">
         <div className="featured-heading">
           <h2>Featured Laptops</h2>
-          <button className="viewall-btn">View All</button>
+          <Link to="/laptops" className={location.pathname === "/laptops" ? "active" : ""}>
+            <button className="viewall-btn"> View All</button>
+          </Link>
         </div>
 
         <div className="feature-content">
@@ -92,10 +124,11 @@ const Landingpage = () => {
                   <span className="product-storage"> | {product.storage} Storage</span>
                 </h3>
                 <p className="product-price">Rs {product.price}</p>
-                <div className="wishlist">
-                  <Heart className="wishlist-icon" />
-                  <span>Add to wishlist</span>
-                </div>
+              </div>
+
+              <div className="wishlist">
+                <Heart className="wishlist-icon" />
+                <span onClick={() => handleAddToWishlist(product.id)}>Add to wishlist</span>
               </div>
               <div className="addtocart-btn">
                 <button>Add to Cart</button>
@@ -108,7 +141,9 @@ const Landingpage = () => {
       <div className="featured-container">
         <div className="featured-heading">
           <h2>Featured Gaming Laptops</h2>
-          <button className="viewall-btn">View All</button>
+          <Link to="/gaming-laptops" className={location.pathname === "/gaming-laptops" ? "active" : ""}>
+            <button className="viewall-btn"> View All</button>
+          </Link>
         </div>
         <div className="feature-content">
           {featuredGamingLaptops.map((product) => (
@@ -124,11 +159,13 @@ const Landingpage = () => {
                   <span className="product-processor"> | {product.processor} Processor</span>
                   <span className="product-ram"> | {product.ram} RAM</span>
                   <span className="product-storage"> | {product.storage} Storage</span>
-                </h3><p className="product-price">Rs {product.price}</p>
-                <div className="wishlist">
-                  <Heart className="wishlist-icon" />
-                  <span>Add to wishlist</span>
-                </div>
+                </h3>
+                <p className="product-price">Rs {product.price}</p>
+              </div>
+
+              <div className="wishlist">
+                <Heart className="wishlist-icon" />
+                <span onClick={() => handleAddToWishlist(product.id)}>Add to wishlist</span>
               </div>
               <div className="addtocart-btn">
                 <button>Add to Cart</button>
@@ -154,13 +191,12 @@ const Landingpage = () => {
               <div className="product-info" onClick={() => navigate(`/laptopdetail/${product.id}`)} >
                 <h3 className="product-title">{product.name}
                   <span className="product-model"> | {product.modelseries}</span>
-
                 </h3>
                 <p className="product-price">Rs {product.price}</p>
-                <div className="wishlist">
-                  <Heart className="wishlist-icon" />
-                  <span>Add to wishlist</span>
-                </div>
+              </div>
+              <div className="wishlist">
+                <Heart className="wishlist-icon" />
+                <span onClick={() => handleAddToWishlist(product.id)}>Add to wishlist</span>
               </div>
               <div className="addtocart-btn">
                 <button>Add to Cart</button>
