@@ -1,14 +1,17 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import axios from "axios";
 import "./navbar.css"; // Import CSS file
-import { FaHeart, FaShoppingCart, FaUser } from "react-icons/fa"; 
-import logo from "../../assets/logotechhive.png"; 
+import { FaHeart, FaShoppingCart, FaUser } from "react-icons/fa";
+import logo from "../../assets/logotechhive.png";
 
 const Navbar = ({ onUserLogin }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
-  const location = useLocation(); 
-  const navigate = useNavigate(); 
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
 
   // Check if user is logged in when the component loads
   useEffect(() => {
@@ -16,10 +19,10 @@ const Navbar = ({ onUserLogin }) => {
     if (storedUser) {
       setUser(storedUser); // Set the user name if present in localStorage
     }
+
     const handleStorageChange = () => {
       setUser(JSON.parse(localStorage.getItem("user")));
     };
- 
 
     window.addEventListener("storage", handleStorageChange);
 
@@ -34,11 +37,37 @@ const Navbar = ({ onUserLogin }) => {
     localStorage.removeItem("user");
     localStorage.removeItem("userToken");
     setUser(null);
-
-    // Trigger storage event to update other components
     window.dispatchEvent(new Event("storage"));
-
     navigate("/userlogin");
+  };
+
+  // Fetch search suggestions
+  const fetchSuggestions = async (query) => {
+    if (!query) {
+      setSuggestions([]);
+      return;
+    }
+    try {
+      const response = await axios.get(`http://localhost:5000/api/search/search?query=${query}`);
+      setSuggestions(response.data.slice(0, 5)); // Show only top 5 results
+    } catch (error) {
+      console.error("Error fetching suggestions:", error);
+    }
+  };
+
+  // Handle search input change
+  const handleSearchChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    fetchSuggestions(query);
+  };
+
+  // Handle search submission
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?query=${searchQuery}`);
+    }
   };
 
   return (
@@ -49,34 +78,61 @@ const Navbar = ({ onUserLogin }) => {
           <img src={logo} alt="TechHive Logo" className="logo-img" />
         </Link>
 
-        <div className="search-bar">
-          <input type="text" placeholder="Search for laptops, brands..." />
-          <button>🔍</button>
+        <div className="search-container">
+          <form onSubmit={handleSearchSubmit} className="search-bar">
+            <input
+              type="text"
+              placeholder="Search for laptops, brands..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+            <button type="submit">🔍</button>
+          </form>
+
+          {/* Display suggestions */}
+          {suggestions.length > 0 && (
+            <ul className="search-suggestions">
+              {suggestions.map((product) => (
+                <li key={product.id} onClick={() => navigate(`/laptopdetail/${product.id}`)} className="product-suggestion">
+                  <div className="search-content">
+                    <div className="search-image">
+                      <img
+                        src={product.images?.length > 0 ? product.images[0] : laptopImage}
+                        alt={product.name}
+                        className="s"
+                      />
+                    </div>
+                    <div className="search-info">
+                      <h5>{product.name} | {product.brand} | {product.modelseries} | {product.category} | </h5>
+
+                    </div>
+                    <div className="search-price">
+                      <h5> Rs. {product.price}</h5>
+                    </div>
+                  </div>
+                </li>
+
+              ))}
+            </ul>
+          )}
         </div>
 
         <div className="user-links">
+          
           <Link to="/wishlist">
-            <FaHeart /> My Wishlist
-          </Link>
-          <Link to="/cart">
             <FaShoppingCart /> My Cart
           </Link>
           <Link to="/userdashboard-accountinfo">
             <FaUser /> My Account
           </Link>
           {user ? (
-            
-            // If user is logged in, show username & logout button
             <div className="user-dropdown">
-              
-              
               <span className="username">Welcome</span>
               <button className="logout-btn" onClick={handleLogout}>
                 Logout
               </button>
             </div>
           ) : (
-            // If user is not logged in, show login link
             <Link to="/userlogin">
               <FaUser /> Login
             </Link>

@@ -22,6 +22,36 @@ const ProductDetail = () => {
   const nextImage = () => setCurrentIndex((currentIndex + 1) % product.images.length);
   const selectImage = (index) => setCurrentIndex(index);
 
+
+  const handleBuyNow = async () => {
+    try {
+      const token = localStorage.getItem('userToken');
+      if (!token) {
+        alert('You must be logged in to place an order.');
+        return;
+      }
+
+      const response = await axios.post(
+        'http://localhost:5000/api/orders/place',
+        {
+          productId: product.id,
+          quantity,
+          totalPrice: product.price * quantity
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
+      alert('Order placed successfully!');
+    } catch (error) {
+      setError("Failed to place order. Please try again.");
+      console.error("Error placing order:", error);
+    }
+  };
+
   return (
     <div className="laptopdetail-container">
       <div className="laptopdetailcard">
@@ -78,7 +108,7 @@ const ProductDetail = () => {
             <p>Quantity</p>
             <input type="number" className="quantity-input" min="1" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value) || 1)} />
             <button className="btn add-to-cart"><ShoppingCart className="icon" size={18} /> Add to Cart</button>
-            <button className="btn buy-now"><CreditCard className="icon" size={18} /> Buy Now</button>
+            <button className="btn buy-now" onClick={handleBuyNow}><CreditCard className="icon" size={18} /> Buy Now</button>
           </div>
         </div>
       </div>

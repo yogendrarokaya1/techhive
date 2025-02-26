@@ -13,12 +13,14 @@ const AdminSidebar = () => {
                 <li className={location.pathname === "/admin/dashboard" ? "active" : ""}>
                     <Link to="/admin/dashboard">Dashboard</Link>
                 </li>
-                <li className={location.pathname === "/admin/listproduct" || location.pathname === "/admin/add-product" || location.pathname === "/admin/edit-product" ? "active" : ""}>
+                <li className={location.pathname === "/admin/listproduct" || location.pathname === "/admin/add-product" || location.pathname === "/admin/edit-product" || location.pathname.includes("/admin/edit-product/") ? "active" : ""}>
                     <Link to="/admin/listproduct">Products Management</Link>
                 </li>
-                <li className={location.pathname === "/admin/orders" ? "active" : ""}>
-                    <Link to="/admin/orders">Order Management</Link>
+
+                <li className={location.pathname === "/admin/adminorder" ? "active" : ""}>
+                    <Link to="/admin/adminorder">Order Management</Link>
                 </li>
+
                 <li className={location.pathname === "/admin/users" ? "active" : ""}>
                     <Link to="/admin/users">Users Management</Link>
                 </li>

@@ -102,9 +102,13 @@ const Wishlist = () => {
                             </h3>
                             <p className="product-price">Rs {product.price}</p>
                         </div>
-                        <div className="addtocart-btn">
+                        <div className="checkout-btn">
+                            <button onClick={() => navigate(`/laptopdetail/${product.id}`)}>Checkout</button>
+                        </div>
+                        <div className="remove-btn">
                             <button onClick={() => handleRemoveFromWishlist(product.id)}>Remove Item</button>
                         </div>
+                        
                     </div>
                 ))}
             </div>

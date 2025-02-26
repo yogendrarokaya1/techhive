@@ -68,13 +68,9 @@ const Laptoplist = () => {
                     <p className="product-price">Rs {product.price}</p>
                   </div>
 
-                  <div className="wishlist">
-                    <Heart className="wishlist-icon" />
-                    <span onClick={() => handleAddToWishlist(product.id)}>Add to wishlist</span>
-                  </div>
                   <div className="addtocart-btn">
-                    <button>Add to Cart</button>
-                  </div>
+                <button onClick={() => handleAddToWishlist(product.id)}>Add to Cart</button>
+              </div>
                 </div>
               ))}
             </div>

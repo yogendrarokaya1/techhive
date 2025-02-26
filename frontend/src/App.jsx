@@ -8,6 +8,7 @@ import Gadgets from "./pages/gadgets/Gadgets";
 import NotebookList from "./pages/notebook/Notebook"
 import UltrabookList from "./pages/ultrabook/Ultrabook"
 import LaptopDetails from "./pages/laptopdetails/LaptopDetail"
+import SearchResult from "./pages/searchpage/SearchPage"
 // import Cartlist from "./pages/cart/AddCart"
 
 
@@ -18,6 +19,8 @@ import UserSignup from "./pages/user-auth/usersignup/Usersignup";
 import UserDashboard from "./pages/userdashboard/UserDashboard";
 import EdituserAccount from "./components/userdashboard-sidebar/EdituserAccount";
 import WishList from "./pages/wishlist/WishList"
+import OrderList from "./pages/order/Orderdetail"
+
 
 // import Cart from "./pages/cart/Cart";
 import AdminRoutes from "./adminPanel/Adminroute";
@@ -54,6 +57,8 @@ const Layout = () => {
         <Route path="/notebook/" element={<NotebookList />} />
         <Route path="/ultrabook/" element={<UltrabookList />} />
         <Route path="/laptopdetail/:id" element={<LaptopDetails />} />
+        <Route path="/search" element={<SearchResult />} />
+
 
 
 
@@ -63,6 +68,8 @@ const Layout = () => {
         <Route path="/userdashboard-accountinfo" element={<UserDashboard />} />
         <Route path="/edituser-info" element={<EdituserAccount />} />
         <Route path="/wishlist" element={<WishList />} />
+        <Route path="/order" element={<OrderList />} />
+
         {/* <Route path="/cartlist" element={<Cartlist />} /> */}
 
 

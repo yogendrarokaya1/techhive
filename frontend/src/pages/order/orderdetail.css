@@ -1,0 +1,80 @@
+
+
+.orderdetail-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f5f5f5; /* Light background */
+  }
+  
+  .orderdetail-content{
+    padding: 20px
+  }
+  .orderdetail-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .orderdetail-container table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff; /* White background for table */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  table th {
+    background-color: #4caf50; /* Green header */
+    color: white;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  table tr:hover {
+    background-color: #f2f2f2; /* Hover effect */
+  }
+  
+  button {
+    background-color: #ff4d4d; /* Red button for delete */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #e60000;
+  }
+  
+  .total-price {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .orderdetail-container .proceed-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #4caf50; /* Green for proceed button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .orderdetail-container .proceed-button:hover {
+    background: #45a049;
+  }
+  
