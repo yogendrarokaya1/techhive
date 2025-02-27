@@ -12,6 +12,7 @@ const Laptoplist = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const navigate = useNavigate();
 
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/products/laptoplist/Gadgets")
@@ -31,6 +32,35 @@ const Laptoplist = () => {
     }
     return 0;
   });
+  const handleAddToWishlist = async (productId) => {
+    const token = localStorage.getItem("userToken"); // Get the JWT token from localStorage
+
+    if (!token) {
+      navigate("/userlogin");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/cartlist/add",
+        { productId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+          },
+        }
+      );
+
+      if (response.data.success) {
+        alert("Product added to wishlist!");
+      } else {
+        alert("Failed to add product to wishlist.");
+      }
+    } catch (error) {
+      console.error("Error adding to wishlist:", error);
+      alert("An error occurred. Please try again.");
+    }
+  };
 
   return (
     <>
@@ -39,7 +69,7 @@ const Laptoplist = () => {
         <div style={{ marginLeft: "25px", width: "100%" }}>
           <div className="featured-container">
             <div className="featured-heading">
-              <h2>Gadgets</h2>
+              <h2>Laptops</h2>
               {/* Sort By Price Filter */}
               <div className="filter-item">
                 <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>

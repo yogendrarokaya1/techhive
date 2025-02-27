@@ -18,7 +18,7 @@ import UserLogin from "./pages/user-auth/userlogin/UserLogin";
 import UserSignup from "./pages/user-auth/usersignup/Usersignup";
 import UserDashboard from "./pages/userdashboard/UserDashboard";
 import EdituserAccount from "./components/userdashboard-sidebar/EdituserAccount";
-import WishList from "./pages/wishlist/WishList"
+import CartList from "./pages/cart/CartList"
 import OrderList from "./pages/order/Orderdetail"
 
 
@@ -67,7 +67,7 @@ const Layout = () => {
         <Route path="/usersignup" element={<UserSignup />} />
         <Route path="/userdashboard-accountinfo" element={<UserDashboard />} />
         <Route path="/edituser-info" element={<EdituserAccount />} />
-        <Route path="/wishlist" element={<WishList />} />
+        <Route path="/cartlist" element={<CartList />} />
         <Route path="/order" element={<OrderList />} />
 
         {/* <Route path="/cartlist" element={<Cartlist />} /> */}

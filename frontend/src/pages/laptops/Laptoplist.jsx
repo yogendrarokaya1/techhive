@@ -42,7 +42,7 @@ const Laptoplist = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/wishlist/add",
+        "http://localhost:5000/api/cartlist/add",
         { productId },
         {
           headers: {

@@ -21,8 +21,8 @@ const UserSidebar = () => {
           My Orders
         </li>
         <li
-          onClick={() => navigate("/wishlist")}
-          className={location.pathname === "/wishlist" ? "active" : ""}
+          onClick={() => navigate("/cartlist")}
+          className={location.pathname === "/cartlist" ? "active" : ""}
         >
           My Cart
         </li>

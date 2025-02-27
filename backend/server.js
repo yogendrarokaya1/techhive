@@ -3,7 +3,7 @@ const cors = require("cors");
 const adminRoutes = require("./routes/adminRoutes");
 const productRoutes = require("./routes/productRoutes");
 const userRoutes = require('./routes/userRoute')
-const wishlistRoutes = require("./routes/wishlistRoutes")
+const cartRoutes = require("./routes/cartRoutes")
 const OrderListRoutes = require("./routes/orderRoutes")
 const SearchRoutes = require("./routes/searchRoutes")
 const bodyParser = require('body-parser');
@@ -22,7 +22,7 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/user", userRoutes);
 // app.use("/api/cart", cartRoutes);
-app.use("/api/wishlist", wishlistRoutes);
+app.use("/api/cartlist", cartRoutes);
 
 app.use("/api/orders", OrderListRoutes);
 app.use("/api/search", SearchRoutes);

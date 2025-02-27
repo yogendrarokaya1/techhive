@@ -55,7 +55,7 @@ const Landingpage = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/wishlist/add",
+        "http://localhost:5000/api/cartlist/add",
         { productId },
         {
           headers: {
@@ -65,7 +65,7 @@ const Landingpage = () => {
       );
 
       if (response.data.success) {
-        alert("Product added to wishlist!");
+        alert("Product added to cartlist!");
       } else {
         alert(response.data.message); // Show the message from the backend
       }

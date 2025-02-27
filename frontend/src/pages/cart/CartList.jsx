@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import UserSidebar from "../../components/userdashboard-sidebar/Usersidebar";
 
 import "../landingpage/landingpage.css";
-import "./wishlist.css";
+import "./cartlist.css";
 
 
 
@@ -23,7 +23,7 @@ const Wishlist = () => {
         }
 
         try {
-            const response = await axios.get("http://localhost:5000/api/wishlist", {
+            const response = await axios.get("http://localhost:5000/api/cartlist", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -32,10 +32,10 @@ const Wishlist = () => {
             if (response.data.success) {
                 setWishlist(response.data.data);
             } else {
-                alert("Failed to fetch wishlist.");
+                alert("Failed to fetch cart.");
             }
         } catch (error) {
-            console.error("Error fetching wishlist:", error);
+            console.error("Error fetching cart:", error);
             alert("An error occurred. Please try again.");
         }
     };
@@ -57,7 +57,7 @@ const Wishlist = () => {
 
         try {
             const response = await axios.delete(
-                "http://localhost:5000/api/wishlist/remove",
+                "http://localhost:5000/api/cartlist/remove",
                 {
                     data: { productId }, // Send productId in the request body
                     headers: {
@@ -67,13 +67,13 @@ const Wishlist = () => {
             );
 
             if (response.data.success) {
-                alert("Product removed from wishlist.");
+                alert("Product removed from cartlist.");
                 fetchWishlist(); // Refresh the wishlist
             } else {
-                alert("Failed to remove product from wishlist.");
+                alert("Failed to remove product from cartlist.");
             }
         } catch (error) {
-            console.error("Error removing from wishlist:", error);
+            console.error("Error removing from cartlist:", error);
             alert("An error occurred. Please try again.");
         }
     };

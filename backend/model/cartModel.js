@@ -1,8 +1,8 @@
 const pool = require("../database/db");
 
-class WishlistModel {
+class CartModel {
 
-    static async addToWishlist(userId, productId) {
+    static async addToCart(userId, productId) {
         // Check if the product is already in the wishlist
         const checkQuery = `
           SELECT * FROM wishlist
@@ -12,7 +12,7 @@ class WishlistModel {
         const checkResult = await pool.query(checkQuery, checkValues);
     
         if (checkResult.rows.length > 0) {
-          return { success: false, message: "Product is already in your wishlist." };
+          return { success: false, message: "Product is already in your cartlist." };
         }
     
         // Add the product to the wishlist
@@ -26,7 +26,7 @@ class WishlistModel {
         return { success: true, data: insertResult.rows[0] };
       }
 
-    static async getWishlistByUser(userId) {
+    static async getCartByUser(userId) {
         const query = `
       SELECT products.*
       FROM wishlist
@@ -37,7 +37,7 @@ class WishlistModel {
         return result.rows;
     }
 
-    static async removeFromWishlist(userId, productId) {
+    static async removeFromCart(userId, productId) {
         const query = `
       DELETE FROM wishlist
       WHERE user_id = $1 AND product_id = $2
@@ -49,4 +49,4 @@ class WishlistModel {
     }
 }
 
-module.exports = WishlistModel;
+module.exports = CartModel;

@@ -1,6 +1,6 @@
-const Wishlist = require("../model/wishlistModel");
+const Cartlist = require("../model/cartModel");
 
-const addToWishlist = async (req, res) => {
+const addToCart = async (req, res) => {
     const { productId } = req.body;
     const userId = req.userId;
   
@@ -9,7 +9,7 @@ const addToWishlist = async (req, res) => {
     }
   
     try {
-      const result = await Wishlist.addToWishlist(userId, productId);
+      const result = await Cartlist.addToCart(userId, productId);
   
       if (!result.success) {
         return res.status(400).json({ success: false, message: result.message });
@@ -23,11 +23,11 @@ const addToWishlist = async (req, res) => {
   };
 
 
-  const getWishlist = async (req, res) => {
+  const getCart = async (req, res) => {
     const userId = req.userId;
   
     try {
-      const wishlist = await Wishlist.getWishlistByUser(userId);
+      const wishlist = await Cartlist.getCartByUser(userId);
       res.status(200).json({ success: true, data: wishlist });
     } catch (error) {
       console.error("Error fetching wishlist:", error);
@@ -35,7 +35,7 @@ const addToWishlist = async (req, res) => {
     }
   };
 
-  const removeFromWishlist = async (req, res) => {
+  const removeFromCart = async (req, res) => {
     const { productId } = req.body;
     const userId = req.userId;
   
@@ -44,7 +44,7 @@ const addToWishlist = async (req, res) => {
     }
   
     try {
-      const deletedItem = await Wishlist.removeFromWishlist(userId, productId);
+      const deletedItem = await Cartlist.removeFromCart(userId, productId);
       if (deletedItem) {
         res.status(200).json({ success: true, message: "Product removed from wishlist." });
       } else {
@@ -56,4 +56,4 @@ const addToWishlist = async (req, res) => {
     }
   };
 
-module.exports = { addToWishlist, getWishlist,  removeFromWishlist};
+module.exports = { addToCart, getCart,  removeFromCart};

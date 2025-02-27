@@ -119,7 +119,7 @@ const Navbar = ({ onUserLogin }) => {
 
         <div className="user-links">
           
-          <Link to="/wishlist">
+          <Link to="/cartlist">
             <FaShoppingCart /> My Cart
           </Link>
           <Link to="/userdashboard-accountinfo">
