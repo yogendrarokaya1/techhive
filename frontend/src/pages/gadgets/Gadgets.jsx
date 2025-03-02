@@ -1,39 +1,56 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Heart } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
 import FilterBar from "../../components/filter/Filterbar";
 import "../landingpage/landingpage.css";
 
 const Laptoplist = () => {
-  const [sortOrder, setSortOrder] = useState(""); // State for sorting order
+  const [sortOrder, setSortOrder] = useState(""); // Sorting state
   const [laptopList, setLaptopList] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 20; // Number of products per page
   const navigate = useNavigate();
-
 
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/products/laptoplist/Gadgets")
       .then((response) => {
         setLaptopList(response.data);
-        setFilteredProducts(response.data); // Initialize filtered products with all products
+        setFilteredProducts(response.data); // Initialize filtered products
       })
       .catch((error) => console.error(error));
   }, []);
 
   // Sorting function
   const sortedLaptops = [...filteredProducts].sort((a, b) => {
-    if (sortOrder === "asc") {
-      return a.price - b.price; // Sort Low to High
-    } else if (sortOrder === "desc") {
-      return b.price - a.price; // Sort High to Low
-    }
+    if (sortOrder === "asc") return a.price - b.price; // Low to High
+    else if (sortOrder === "desc") return b.price - a.price; // High to Low
     return 0;
   });
+
+  // Pagination: Get current page's products
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = sortedLaptops.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  // Handle Next & Previous Page
+  const nextPage = () => {
+    if (currentPage < Math.ceil(sortedLaptops.length / productsPerPage)) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  // Wishlist function
   const handleAddToWishlist = async (productId) => {
-    const token = localStorage.getItem("userToken"); // Get the JWT token from localStorage
+    const token = localStorage.getItem("userToken"); // Get the JWT token
 
     if (!token) {
       navigate("/userlogin");
@@ -45,17 +62,11 @@ const Laptoplist = () => {
         "http://localhost:5000/api/cartlist/add",
         { productId },
         {
-          headers: {
-            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
-          },
+          headers: { Authorization: `Bearer ${token}` }, // Include token
         }
       );
 
-      if (response.data.success) {
-        alert("Product added to wishlist!");
-      } else {
-        alert("Failed to add product to wishlist.");
-      }
+      alert(response.data.success ? "Product added to wishlist!" : "Failed to add product to wishlist.");
     } catch (error) {
       console.error("Error adding to wishlist:", error);
       alert("An error occurred. Please try again.");
@@ -81,15 +92,16 @@ const Laptoplist = () => {
             </div>
 
             <div className="feature-content">
-              {sortedLaptops.map((product) => (
+              {currentProducts.map((product) => (
                 <div className="product-card" key={product.id}>
                   <img
-                    src={product.images?.length > 0 ? product.images[0] : laptopImage}
+                    src={product.images?.length > 0 ? product.images[0] : "/default-image.jpg"}
                     alt={product.name}
                     className="product-image"
                   />
-                  <div className="product-info" onClick={() => navigate(`/laptopdetail/${product.id}`)} >
-                    <h3 className="product-title">{product.name}
+                  <div className="product-info" onClick={() => navigate(`/laptopdetail/${product.id}`)}>
+                    <h3 className="product-title">
+                      {product.name}
                       <span className="product-model"> | Model {product.modelseries}</span>
                       <span className="product-processor"> | {product.processor} Processor</span>
                       <span className="product-ram"> | {product.ram} RAM</span>
@@ -99,10 +111,23 @@ const Laptoplist = () => {
                   </div>
 
                   <div className="addtocart-btn">
-                <button onClick={() => handleAddToWishlist(product.id)}>Add to Cart</button>
-              </div>
+                    <button onClick={() => handleAddToWishlist(product.id)}>Add to Cart</button>
+                  </div>
                 </div>
               ))}
+            </div>
+
+            {/* Pagination Controls */}
+            <div className="pagination">
+              <button onClick={prevPage} disabled={currentPage === 1}>
+                Previous
+              </button>
+              <span>
+                Page {currentPage} of {Math.ceil(sortedLaptops.length / productsPerPage)}
+              </span>
+              <button onClick={nextPage} disabled={currentPage >= Math.ceil(sortedLaptops.length / productsPerPage)}>
+                Next
+              </button>
             </div>
           </div>
         </div>

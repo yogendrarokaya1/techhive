@@ -7,6 +7,7 @@ import ListProduct from "./products/ProductList";
 import AddProduct from "./products/addproduct/Addproduct";
 import EditProduct from './products/editproduct/Editproduct'
 import OrderManage from './products/manageorder/OrderManage'
+import UserManage from "./usermanagement/UserManage"
 
 
 const AdminRoutes = () => {
@@ -18,7 +19,9 @@ const AdminRoutes = () => {
       <Route path="/listproduct" element={<ListProduct />} />
       <Route path="/add-product" element={<AddProduct />} />
       <Route path="/edit-product/:id" element={<EditProduct />} /> 
-      <Route path="/adminorder/" element={<OrderManage />} />      
+      <Route path="/adminorder/" element={<OrderManage />} />
+      <Route path="/usermanage/" element={<UserManage />} />      
+      
      
       
     </Routes>

@@ -5,7 +5,7 @@ const FilterComponent = ({ setFilteredProducts, laptopList }) => {
   const [selectedBrand, setSelectedBrand] = useState("");
   const [priceRange, setPriceRange] = useState([20000, 1000000]);
 
-  const brands = ["Dell", "Acer", "Hp", "Asus", "MSI", "Lenovo", "Macbook", "Samsung"];
+  const brands = ["Dell", "Acer", "HP", "Asus", "MSI", "Lenovo", "Macbook", "Samsung"];
 
   // Function to handle brand selection (only one at a time)
   const handleBrandChange = (brand) => {

@@ -1,0 +1,62 @@
+/* Container for centering the form */
+.forgot-pass-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styling */
+h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Form styling */
+.forgotpass-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Input field styling */
+.forgotpass-input {
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.forgotpass-input:focus {
+    border-color: #007bff;
+}
+
+/* Button styling */
+.send-otp-btn {
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.send-otp-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Message styling */
+.otp-msg {
+    color: green;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}

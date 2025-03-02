@@ -53,6 +53,7 @@ const AccountInformation = () => {
             <p>Loading user details...</p>
           )}
           <button className="edit-button" onClick={() => navigate("/edituser-info")}>Edit</button>
+         
         </div>
       </div>
     </div>

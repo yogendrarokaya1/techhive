@@ -14,7 +14,7 @@ const UserLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(""); // Reset error before new request
-    
+
     try {
       const response = await fetch("http://localhost:5000/api/user/userslogin", {
         method: "POST",
@@ -75,6 +75,11 @@ const UserLogin = () => {
             </span>
           </p>
         </div>
+        <div>
+          <button onClick={() => navigate("/forget-password")}>
+            Forget Password?
+          </button>        
+          </div>
       </div>
     </div>
   );

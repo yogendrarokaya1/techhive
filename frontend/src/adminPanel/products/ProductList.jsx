@@ -79,7 +79,7 @@ const ProductList = () => {
                     <tbody>
                         {products.map((product, index) => (
                             <tr key={product.id}>
-                                <td>{index + 1}</td>  {/* Serial number */}
+                                <td>{index + 1}</td>
                                 <td>{product.name}</td>
                                 <td>{product.modelseries || "N/A"}</td>
                                 <td>{product.stock}</td>

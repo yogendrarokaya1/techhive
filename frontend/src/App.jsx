@@ -16,6 +16,10 @@ import SearchResult from "./pages/searchpage/SearchPage"
 
 import UserLogin from "./pages/user-auth/userlogin/UserLogin";
 import UserSignup from "./pages/user-auth/usersignup/Usersignup";
+import ForgetPassword from "./pages/user-auth/forgetpassword/ForgetPassword";
+import ResetPassword from "./pages/user-auth/forgetpassword/ResetPassword"
+import VerifyOtp from "./pages/user-auth/forgetpassword/OtpVerification"
+
 import UserDashboard from "./pages/userdashboard/UserDashboard";
 import EdituserAccount from "./components/userdashboard-sidebar/EdituserAccount";
 import CartList from "./pages/cart/CartList"
@@ -69,6 +73,12 @@ const Layout = () => {
         <Route path="/edituser-info" element={<EdituserAccount />} />
         <Route path="/cartlist" element={<CartList />} />
         <Route path="/order" element={<OrderList />} />
+        <Route path="/forget-password" element={<ForgetPassword />} />
+        <Route path="/verify-otp" element={<VerifyOtp />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+
+
+
 
         {/* <Route path="/cartlist" element={<Cartlist />} /> */}
 

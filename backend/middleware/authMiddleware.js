@@ -1,4 +1,5 @@
-// middleware/authMiddleware.js
+
+require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
 const authMiddleware = (req, res, next) => {
@@ -9,12 +10,12 @@ const authMiddleware = (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, "yourSecretKey123456is3344good"); // Replace with your secret key
-    req.userId = decoded.userId; // Attach userId to the request object
+    const decoded = jwt.verify(token, process.env.JWT_SECRET); // Use environment variable
+    req.userId = decoded.userId; // Attach userId to request
     next();
   } catch (error) {
     console.error("Error verifying token:", error);
-    res.status(400).json({ success: false, message: "Invalid token." });
+    res.status(401).json({ success: false, message: "Invalid token." });
   }
 };
 
