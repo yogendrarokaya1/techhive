@@ -159,11 +159,6 @@ const Navbar = ({ onUserLogin }) => {
             </Link>
           </li>
           <li>
-            <Link to="/gadgets" className={location.pathname === "/gadgets" ? "active" : ""}>
-              Gadgets
-            </Link>
-          </li>
-          <li>
             <Link to="/notebook" className={location.pathname === "/notebook" ? "active" : ""}>
               Notebook
             </Link>
@@ -173,6 +168,12 @@ const Navbar = ({ onUserLogin }) => {
               Ultrabook
             </Link>
           </li>
+          <li>
+            <Link to="/gadgets" className={location.pathname === "/gadgets" ? "active" : ""}>
+              Gadgets
+            </Link>
+          </li>
+          
         </ul>
 
         {/* Hamburger Menu for Mobile */}

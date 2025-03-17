@@ -60,6 +60,8 @@ const AdminOrderPage = () => {
                 <tr>
                   <th>Order ID</th>
                   <th>User</th>
+                  <th>User Email</th>
+                  <th>User Contact</th>
                   <th>Product</th>
                   <th>Quantity</th>
                   <th>Total Price</th>
@@ -73,6 +75,8 @@ const AdminOrderPage = () => {
                   <tr key={order.id}>
                     <td>{order.id}</td>
                     <td>{order.user_name}</td>
+                    <td>{order.user_email}</td>
+                    <td>{order.user_contact}</td>
                     <td>{order.product_name}</td>
                     <td>{order.quantity}</td>
                     <td>Rs {order.total_price}</td>

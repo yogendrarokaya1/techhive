@@ -24,12 +24,12 @@ const AdminSidebar = () => {
                 <li className={location.pathname === "/admin/usermanage" ? "active" : ""}>
                     <Link to="/admin/usermanage">Users Management</Link>
                 </li>
-                <li className={location.pathname === "/admin/admin-users" ? "active" : ""}>
+                {/* <li className={location.pathname === "/admin/admin-users" ? "active" : ""}>
                     <Link to="/admin/admin-users">Admin Management</Link>
                 </li>
                 <li className={location.pathname === "/admin/settings" ? "active" : ""}>
                     <Link to="/admin/settings">Settings</Link>
-                </li>
+                </li> */}
             </ul>
         </div>
     );

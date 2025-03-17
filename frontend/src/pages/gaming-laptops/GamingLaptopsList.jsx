@@ -80,7 +80,7 @@ const Laptoplist = () => {
         <div style={{ marginLeft: "25px", width: "100%" }}>
           <div className="featured-container">
             <div className="featured-heading">
-              <h2>Laptops</h2>
+              <h2>Gaming Laptops</h2>
               {/* Sort By Price Filter */}
               <div className="filter-item">
                 <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>

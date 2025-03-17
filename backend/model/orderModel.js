@@ -47,6 +47,8 @@ getAllOrders: async () => {
     const result = await pool.query(
       `SELECT orders.id, orders.quantity, orders.total_price, orders.order_date, orders.status, 
               users.name AS user_name, 
+              users.email As user_email,
+              users.contact As user_contact,
               products.name AS product_name
        FROM orders
        JOIN users ON orders.user_id = users.id
