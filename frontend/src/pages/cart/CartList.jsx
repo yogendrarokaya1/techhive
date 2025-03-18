@@ -103,7 +103,7 @@ const Wishlist = () => {
                             <p className="product-price">Rs {product.price}</p>
                         </div>
                         <div className="checkout-btn">
-                            <button onClick={() => navigate(`/laptopdetail/${product.id}`)}>Checkout</button>
+                            <button onClick={() => navigate(`/laptopdetail/${product.id}`)} disabled={product.stock <= 0}>Checkout</button>
                         </div>
                         <div className="remove-btn">
                             <button onClick={() => handleRemoveFromWishlist(product.id)}>Remove Item</button>

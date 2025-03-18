@@ -1,4 +1,3 @@
-// src/components/ProductList.jsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminNavbar from "../adminnavbar/Adminnavbar";
@@ -82,7 +81,14 @@ const ProductList = () => {
                                 <td>{index + 1}</td>
                                 <td>{product.name}</td>
                                 <td>{product.modelseries || "N/A"}</td>
-                                <td>{product.stock}</td>
+                                <td>
+                                    <span className="stock-number">{product.stock}</span>{" "}
+                                    {product.stock > 0 ? (
+                                        <span className="in-stock">(In Stock)</span>
+                                    ) : (
+                                        <span className="out-of-stock">(Out of Stock)</span>
+                                    )}
+                                </td>
                                 <td>{product.brand}</td>
                                 <td>{product.category}</td>
                                 <td>Rs. {product.price}</td>

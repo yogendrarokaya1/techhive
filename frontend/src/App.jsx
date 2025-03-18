@@ -9,6 +9,7 @@ import NotebookList from "./pages/notebook/Notebook"
 import UltrabookList from "./pages/ultrabook/Ultrabook"
 import LaptopDetails from "./pages/laptopdetails/LaptopDetail"
 import SearchResult from "./pages/searchpage/SearchPage"
+import Checkout from "./components/checkout/Checkout"
 // import Cartlist from "./pages/cart/AddCart"
 
 
@@ -73,6 +74,7 @@ const Layout = () => {
         <Route path="/edituser-info" element={<EdituserAccount />} />
         <Route path="/cartlist" element={<CartList />} />
         <Route path="/order" element={<OrderList />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
         <Route path="/verify-otp" element={<VerifyOtp />} />
         <Route path="/reset-password" element={<ResetPassword />} />

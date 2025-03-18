@@ -4,6 +4,7 @@
   gap: 20px;
   padding: 20px;
   background-color: #f9f9f9;
+  flex-wrap: wrap;
 }
 
 /* Filter Sidebar */
@@ -154,9 +155,10 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .laptoplist-container {
     flex-direction: column;
+    gap: 20px;
   }
 
   .filter-bar {
@@ -165,5 +167,76 @@
 
   .featured-container {
     width: 100%;
+  }
+
+  .feature-content {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  /* Filter Sidebar for Small Devices */
+  .filter-bar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .laptoplist-container {
+    flex-direction: column;
+  }
+
+  .featured-container {
+    width: 100%;
+  }
+
+  .feature-content {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .product-image {
+    height: 180px;
+  }
+
+  .product-title {
+    font-size: 16px;
+  }
+
+  .product-price {
+    font-size: 18px;
+  }
+
+  .pagination button {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-bar {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .featured-heading h2 {
+    font-size: 20px;
+  }
+
+  .feature-content {
+    grid-template-columns: 1fr;
+  }
+
+  .product-title {
+    font-size: 14px;
+  }
+
+  .product-price {
+    font-size: 16px;
+  }
+
+  .pagination {
+    gap: 10px;
+  }
+
+  .pagination button {
+    font-size: 10px;
   }
 }

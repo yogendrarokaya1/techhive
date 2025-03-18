@@ -1,23 +1,28 @@
 const pool = require("../database/db");
 
 const Order = {
-  placeOrder: async (userId, productId, quantity, totalPrice) => {
+  placeOrder: async (userId, productId, quantity, totalPrice, district, city, tole, paymentmethod) => {
     try {
       const result = await pool.query(
-        "INSERT INTO orders (user_id, product_id, quantity, total_price) VALUES ($1, $2, $3, $4) RETURNING *",
-        [userId, productId, quantity, totalPrice]
+        `INSERT INTO orders 
+          (user_id, product_id, quantity, total_price, district, city, tole, paymentmethod) 
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8) 
+         RETURNING *`,
+        [userId, productId, quantity, totalPrice, district, city, tole, paymentmethod]
       );
-      return result.rows[0];  // Return the newly placed order
+      return result.rows[0]; // Return the newly placed order
     } catch (error) {
       throw new Error("Error placing order: " + error.message);
     }
   },
 
+  
   getOrdersByUserId: async (userId) => {
     try {
       const result = await pool.query(
         `SELECT orders.id, orders.quantity, orders.total_price, orders.order_date, orders.status,
-                products.name AS product_name 
+                products.name AS product_name,
+                products.price AS product_price
          FROM orders
          JOIN products ON orders.product_id = products.id
          WHERE orders.user_id = $1`, 
@@ -45,7 +50,7 @@ deleteOrderById: async (orderId) => {
 getAllOrders: async () => {
   try {
     const result = await pool.query(
-      `SELECT orders.id, orders.quantity, orders.total_price, orders.order_date, orders.status, 
+      `SELECT orders.id, orders.quantity, orders.total_price, orders.order_date, orders.status, orders.paymentmethod, orders.district, orders.city, orders.tole, 
               users.name AS user_name, 
               users.email As user_email,
               users.contact As user_contact,

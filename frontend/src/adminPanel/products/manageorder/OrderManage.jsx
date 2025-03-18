@@ -30,18 +30,39 @@ const AdminOrderPage = () => {
 }
   }, []);
 
+  // const handleAcceptOrder = async (orderId) => {
+  //   try {
+  //     const response = await axios.put(`http://localhost:5000/api/orders/accept/${orderId}`);
+  //     if (response.data.success) {
+  //       setOrders((prevOrders) =>
+  //         prevOrders.map((order) =>
+  //           order.id === orderId ? { ...order, status: "Accepted" } : order
+  //         )
+  //       );
+  //     }
+  //   } catch (error) {
+  //     console.error("Error accepting order:", error);
+  //   }
+  // };
   const handleAcceptOrder = async (orderId) => {
     try {
       const response = await axios.put(`http://localhost:5000/api/orders/accept/${orderId}`);
+  
       if (response.data.success) {
+        // Update the order status in the state
         setOrders((prevOrders) =>
           prevOrders.map((order) =>
             order.id === orderId ? { ...order, status: "Accepted" } : order
           )
         );
+  
+        alert("Order accepted and email sent successfully!");
+      } else {
+        alert("Failed to accept the order.");
       }
     } catch (error) {
       console.error("Error accepting order:", error);
+      alert("Failed to accept the order.");
     }
   };
 
@@ -66,6 +87,8 @@ const AdminOrderPage = () => {
                   <th>Quantity</th>
                   <th>Total Price</th>
                   <th>Order Date</th>
+                  <th>Payment</th>
+                  <th>Address</th>
                   <th>Status</th>
                   <th>Actions</th>
                 </tr>
@@ -81,6 +104,8 @@ const AdminOrderPage = () => {
                     <td>{order.quantity}</td>
                     <td>Rs {order.total_price}</td>
                     <td>{new Date(order.order_date).toLocaleDateString()}</td>
+                    <td>{order.paymentmethod}</td>
+                    <td>{order.district}, {order.city}, {order.tole}</td>
                     <td>{order.status}</td> {/* Display the status */}
                     <td>
                       {order.status === "Pending" && (

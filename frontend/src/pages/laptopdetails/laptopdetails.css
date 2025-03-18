@@ -155,3 +155,136 @@
   background: #4caf50;
   color: white;
 }
+
+.stock-status {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.in-stock {
+  color: green;
+}
+
+.out-of-stock {
+  color: red;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .laptopdetailcard {
+    flex-direction: column;
+    align-items: center; /* Center content */
+  }
+
+  .laptopdetailcard-content {
+    width: 100%; /* Make content take full width */
+  }
+
+  .laptopdetailimage-slider {
+    width: 100%; /* Ensure image slider takes full width */
+  }
+
+  .laptopdetailproduct-image {
+    width: 100%; /* Adjust image size for smaller screens */
+    height: auto; /* Let height adjust according to width */
+  }
+
+  .thumbnail-container {
+    display: flex;
+    justify-content: center; /* Center the thumbnail images */
+  }
+
+  .thumbnail {
+    width: 60px; /* Slightly larger thumbnails for smaller screens */
+    height: 60px;
+  }
+
+  .laptopdetailslider-btn {
+    padding: 12px; /* Make slider button slightly larger */
+  }
+
+  .laptopdetailactions {
+    flex-direction: column;
+    gap: 15px; /* More space between buttons */
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .laptopdetailcard {
+    gap: 20px; /* Reduce gap between sections */
+    padding: 15px; /* Add padding to make it look better */
+  }
+
+  .laptopdetailcard-content {
+    width: 100%; /* Ensure content section takes full width */
+  }
+
+  .laptopdetailimage-slider {
+    width: 100%;
+  }
+
+  .laptopdetailproduct-image {
+    width: 100%; /* Adjust image width */
+    height: auto; /* Adjust image height for responsiveness */
+  }
+
+  .laptopdetailactions {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .quantity-input {
+    width: 40px; /* Smaller input box */
+  }
+
+  .btn {
+    width: 100%; /* Full-width buttons */
+    padding: 12px 15px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .laptopdetail-container {
+    padding: 10px; /* Add smaller padding for small screens */
+  }
+
+  .laptopdetailcard {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .laptopdetailimage-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .laptopdetailproduct-image {
+    width: 100%; /* Make image take full width */
+    height: auto;
+  }
+
+  .thumbnail {
+    width: 50px; /* Smaller thumbnail images */
+    height: 50px;
+  }
+
+  .laptopdetailactions {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%; /* Full-width buttons */
+  }
+
+  .laptopdetailslider-btn {
+    padding: 10px;
+  }
+}

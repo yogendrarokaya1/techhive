@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { ShoppingCart, CreditCard, ChevronLeft, ChevronRight } from "lucide-react";
 import "./laptopdetails.css";
 import axios from "axios";
@@ -9,6 +9,8 @@ const ProductDetail = () => {
   const [product, setProduct] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     axios.get(`http://localhost:5000/api/products/laptopdetails/${id}`)
@@ -22,43 +24,43 @@ const ProductDetail = () => {
   const nextImage = () => setCurrentIndex((currentIndex + 1) % product.images.length);
   const selectImage = (index) => setCurrentIndex(index);
 
+  const handleBuyNow = () => {
+    const token = localStorage.getItem("userToken");
 
-  const handleBuyNow = async () => {
+    if (!token) {
+      navigate("/userlogin");
+      return;
+    }
+    navigate(`/checkout?productId=${product.id}&quantity=${quantity}`);
+  };
+  
+  const handleAddToCartlist = async () => {
+    const token = localStorage.getItem("userToken");
+
+    if (!token) {
+      navigate("/userlogin");
+      return;
+    }
+
     try {
-      const token = localStorage.getItem('userToken');
-      if (!token) {
-        alert('You must be logged in to place an order.');
-        return;
-      }
-
-      const response = await axios.post(
-        'http://localhost:5000/api/orders/place',
-        {
-          productId: product.id,
-          quantity,
-          totalPrice: product.price * quantity
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
+      await axios.post(
+        "http://localhost:5000/api/cartlist/add",
+        { productId: product.id },
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      alert('Order placed successfully!');
+      alert("Product added to cart!");
     } catch (error) {
-      setError("Failed to place order. Please try again.");
-      console.error("Error placing order:", error);
+      console.error("Error adding to cart:", error);
+      alert("Product already in your cart.");
     }
   };
 
   return (
     <div className="laptopdetail-container">
       <div className="laptopdetailcard">
-        
-        {/* Image Section with Thumbnails */}
+        {/* Image Section */}
         <div className="laptopdetailimage-section">
-          {/* Thumbnails on Left */}
           <div className="thumbnail-container">
             {product.images.map((img, index) => (
               <img
@@ -71,7 +73,6 @@ const ProductDetail = () => {
             ))}
           </div>
 
-          {/* Main Image Slider */}
           <div className="laptopdetailimage-slider">
             <button className="laptopdetailslider-btn left" onClick={prevImage}>
               <ChevronLeft size={16} />
@@ -92,9 +93,14 @@ const ProductDetail = () => {
             <span className="product-ram"> | {product.ram} RAM</span>
             <span className="product-storage"> | {product.storage} Storage</span>
           </h3>
+
           <p className="laptopdetailprice">Rs {product.price}</p>
           <p className="laptopdetailbrand">Brand: <span className="bold">{product.brand}</span></p>
-          
+
+          <p className={`stock-status ${product.stock > 0 ? "in-stock" : "out-of-stock"}`}>
+            {product.stock > 0 ? `In Stock` : "Out of Stock"}
+          </p>
+
           <ul className="laptopdetailspecs">
             <li><strong>Processor:</strong> {product.processor}</li>
             <li><strong>Display:</strong> {product.screensize}</li>
@@ -106,9 +112,31 @@ const ProductDetail = () => {
           {/* Actions */}
           <div className="laptopdetailactions">
             <p>Quantity</p>
-            <input type="number" className="quantity-input" min="1" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value) || 1)} />
-            <button className="btn add-to-cart"><ShoppingCart className="icon" size={18} /> Add to Cart</button>
-            <button className="btn buy-now" onClick={handleBuyNow}><CreditCard className="icon" size={18} /> Buy Now</button>
+            <input
+              type="number"
+              className="quantity-input"
+              min="1"
+              max={product.stock}
+              value={quantity}
+              onChange={(e) => setQuantity(Math.min(Math.max(parseInt(e.target.value) || 1, 1), product.stock))}
+              disabled={product.stock <= 0}
+            />
+
+            <button
+              className="btn add-to-cart"
+              onClick={handleAddToCartlist}
+              disabled={product.stock <= 0}
+            >
+              <ShoppingCart className="icon" size={18} /> Add to Cart
+            </button>
+
+            <button
+              className="btn buy-now"
+              onClick={handleBuyNow}
+              disabled={product.stock <= 0}
+            >
+              <CreditCard className="icon" size={18} /> Buy Now
+            </button>
           </div>
         </div>
       </div>

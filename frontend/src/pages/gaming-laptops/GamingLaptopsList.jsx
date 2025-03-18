@@ -94,12 +94,18 @@ const Laptoplist = () => {
             <div className="feature-content">
               {currentProducts.map((product) => (
                 <div className="product-card" key={product.id}>
+                  
                   <img
                     src={product.images?.length > 0 ? product.images[0] : "/default-image.jpg"}
                     alt={product.name}
                     className="product-image"
                   />
                   <div className="product-info" onClick={() => navigate(`/laptopdetail/${product.id}`)}>
+                  {product.stock > 0 ? (
+                      <span className="in-stock">In Stock</span>
+                    ) : (
+                      <span className="out-of-stock">Out of Stock</span>
+                    )}
                     <h3 className="product-title">
                       {product.name}
                       <span className="product-model"> | Model {product.modelseries}</span>
@@ -111,7 +117,7 @@ const Laptoplist = () => {
                   </div>
 
                   <div className="addtocart-btn">
-                    <button onClick={() => handleAddToWishlist(product.id)}>Add to Cart</button>
+                    <button onClick={() => handleAddToWishlist(product.id)} disabled={product.stock <= 0}>Add to Cart</button>
                   </div>
                 </div>
               ))}

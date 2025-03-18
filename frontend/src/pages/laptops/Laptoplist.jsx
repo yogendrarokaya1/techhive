@@ -69,8 +69,8 @@ const Laptoplist = () => {
 
       alert(response.data.success ? "Product added to wishlist!" : "Failed to add product to wishlist.");
     } catch (error) {
-      console.error("Error adding to wishlist:", error);
-      alert("An error occurred. Please try again.");
+      console.error("Error adding to cart:", error);
+      alert("Product Already added to your cart.");
     }
   };
 
@@ -100,6 +100,11 @@ const Laptoplist = () => {
                     className="product-image"
                   />
                   <div className="product-info" onClick={() => navigate(`/laptopdetail/${product.id}`)}>
+                  {product.stock > 0 ? (
+                      <span className="in-stock">In Stock</span>
+                    ) : (
+                      <span className="out-of-stock">Out of Stock</span>
+                    )}
                     <h3 className="product-title">
                       {product.name}
                       <span className="product-model"> | Model {product.modelseries}</span>
@@ -108,10 +113,11 @@ const Laptoplist = () => {
                       <span className="product-storage"> | {product.storage} Storage</span>
                     </h3>
                     <p className="product-price">Rs {product.price}</p>
+
                   </div>
 
                   <div className="addtocart-btn">
-                    <button onClick={() => handleAddToWishlist(product.id)}>Add to Cart</button>
+                    <button onClick={() => handleAddToWishlist(product.id)} disabled={product.stock <= 0}>Add to Cart</button>
                   </div>
                 </div>
               ))}

@@ -48,7 +48,7 @@ const Landingpage = () => {
     const token = localStorage.getItem("userToken");
 
     if (!token) {
-      alert("Please log in to add items to your wishlist.");
+      alert("Please log in to add items to your cartlist.");
       navigate("/userlogin");
       return;
     }
@@ -117,6 +117,11 @@ const Landingpage = () => {
               <div className="product-info"
                 onClick={() => navigate(`/laptopdetail/${product.id}`)}
               >
+                {product.stock > 0 ? (
+                      <span className="in-stock">In Stock</span>
+                    ) : (
+                      <span className="out-of-stock">Out of Stock</span>
+                    )}
                 <h3 className="product-title">{product.name}
                   <span className="product-model"> | Model {product.modelseries}</span>
                   <span className="product-processor"> | {product.processor} Processor</span>
@@ -126,7 +131,7 @@ const Landingpage = () => {
                 <p className="product-price">Rs {product.price}</p>
               </div>
               <div className="addtocart-btn">
-                <button onClick={() => handleAddToWishlist(product.id)}>Add to Cart</button>
+                <button onClick={() => handleAddToWishlist(product.id)} disabled={product.stock <= 0}>Add to Cart</button>
               </div>
             </div>
           ))}
@@ -149,6 +154,11 @@ const Landingpage = () => {
                 className="product-image"
               />
               <div className="product-info" onClick={() => navigate(`/laptopdetail/${product.id}`)} >
+              {product.stock > 0 ? (
+                      <span className="in-stock">In Stock</span>
+                    ) : (
+                      <span className="out-of-stock">Out of Stock</span>
+                    )}
                 <h3 className="product-title">{product.name}
                   <span className="product-model"> | Model {product.modelseries}</span>
                   <span className="product-processor"> | {product.processor} Processor</span>
@@ -159,7 +169,7 @@ const Landingpage = () => {
               </div>
 
               <div className="addtocart-btn">
-                <button onClick={() => handleAddToWishlist(product.id)}>Add to Cart</button>
+                <button onClick={() => handleAddToWishlist(product.id)} disabled={product.stock <= 0}>Add to Cart</button>
               </div>
             </div>
           ))}
@@ -180,13 +190,18 @@ const Landingpage = () => {
                 className="product-image"
               />
               <div className="product-info" onClick={() => navigate(`/laptopdetail/${product.id}`)} >
+              {product.stock > 0 ? (
+                      <span className="in-stock">In Stock</span>
+                    ) : (
+                      <span className="out-of-stock">Out of Stock</span>
+                    )}
                 <h3 className="product-title">{product.name}
                   <span className="product-model"> | {product.modelseries}</span>
                 </h3>
                 <p className="product-price">Rs {product.price}</p>
               </div>
               <div className="addtocart-btn">
-                <button onClick={() => handleAddToWishlist(product.id)}>Add to Cart</button>
+                <button onClick={() => handleAddToWishlist(product.id)} disabled={product.stock <= 0}>Add to Cart</button>
               </div>
               
             </div>

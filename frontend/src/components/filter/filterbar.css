@@ -80,3 +80,61 @@ h2 {
 .apply-filters-btn:hover {
   background-color: #45a049;
 }
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .filter-container {
+    width: 100%;
+    position: relative;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-container {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px; /* Adds space between filter and product section */
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  .filter-item label {
+    font-size: 12px;
+  }
+
+  .price-inputs input {
+    width: 60px;
+  }
+
+  .apply-filters-btn {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-container {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 14px;
+  }
+
+  .filter-item label {
+    font-size: 12px;
+  }
+
+  .price-inputs input {
+    width: 50px;
+  }
+
+  .apply-filters-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}

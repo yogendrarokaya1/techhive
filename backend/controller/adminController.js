@@ -38,7 +38,27 @@ const AdminController = {
         } catch (error) {
             res.status(500).json({ msg: "Server Error" });
         }
-    }
+    },
+
+    getDashboardData: async (req, res) => {
+        try {
+          const totalUsers = await AdminModel.getTotalUsers();
+          const totalProducts = await AdminModel.getTotalProducts();
+          const totalSoldQuantity = await AdminModel.getTotalSoldQuantity();
+          const totalSales = await AdminModel.getTotalSales();
+
+          res.status(200).json({
+            success: true,
+            totalUsers,
+            totalProducts,
+            totalSoldQuantity,
+            totalSales,
+          });
+        } catch (error) {
+          console.error("Error fetching dashboard data:", error);
+          res.status(500).json({ success: false, message: "Internal server error" });
+        }
+      },
 };
 
 module.exports = AdminController;
